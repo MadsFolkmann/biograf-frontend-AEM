@@ -1,0 +1,22 @@
+.home-container {
+  text-align: center; /* Centrerer indholdet */
+  margin-top: 50px; /* Lidt afstand fra toppen */
+}
+
+.home-header {
+  font-size: 2rem; /* Større overskrift */
+  color: #333; /* Mørk farve for synlighed */
+}
+
+.home-text {
+  font-size: 1.2rem; /* Tekststørrelse */
+  color: #666; /* Lidt mørkere end standardtekstfarve */
+  margin-bottom: 20px; /* Lidt afstand nedenunder hvert afsnit */
+}
+
+.home-image {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  display: block;
+}
