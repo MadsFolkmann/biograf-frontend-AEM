@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { getFilms } from "../services/apiFacade";
 import { Link } from "react-router-dom";
 import { useAuth } from "../security/AuthProvider";
-import "./Biograf.css";
+import "./Film.css"; // Opdateret CSS-filnavn
 
 interface Film {
   id: number;
@@ -25,18 +25,34 @@ export const Film = () => {
   }, []);
 
   return (
-    <div className="biograf-container">
-      <h2 className="biograf-header">Film</h2>
+    <div className="film-container">
+      {" "}
+      {/* Opdateret klassenavn */}
+      <h2 className="film-header">Film</h2> {/* Opdateret klassenavn */}
       <p>Se Film.</p>
-
-      <ul className="biograf-list">
+      <ul className="film-list">
+        {" "}
+        {/* Opdateret klassenavn */}
         {film.map((item, index) => (
-          <li key={index} className="biograf-item">
-            <Link to={`/${item.id}`} className="biograf-link">
-              {item.id} - {item.titel}
+          <li key={index} className="film-item">
+            {" "}
+            {/* Opdateret klassenavn */}
+            <Link to={`/${item.id}`} className="film-link">
+              {" "}
+              {/* Opdateret klassenavn */}
+              <div className="film-item-content">
+                {" "}
+                {/* Opdateret klassenavn */}
+                <img src={item.billede} alt={item.titel} className="film-image" /> {/* Opdateret klassenavn */}
+                <span>
+                  {item.id} - {item.titel}
+                </span>
+              </div>
             </Link>
             {auth.isLoggedInAs(["ADMIN", "USER"]) && (
-              <Link to="/addFilm" state={item} className="biograf-edit">
+              <Link to="/addFilm" state={item} className="film-edit">
+                {" "}
+                {/* Opdateret klassenavn */}
                 Edit
               </Link>
             )}

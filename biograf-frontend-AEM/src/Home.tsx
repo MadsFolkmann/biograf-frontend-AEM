@@ -20,19 +20,6 @@ export default function Home() {
       <h2>AEM Biograf</h2>
       <p>Velkommen til AEM'S Biograf</p>
       <p>Vi har nordens bedste udvalg af film hernede!</p>
-      <p style={{ color: "red" }}>{err}</p>
-      {info && (
-        <>
-          <h3>Info about the backend data used for this example</h3>
-          <p>
-            <span style={{ fontWeight: "bold" }}>Data taken from here:</span> {info.reference}
-          </p>
-          <p>
-            <span style={{ fontWeight: "bold" }}>Data created:</span> {info.created}
-          </p>
-          <p>{info.info}</p>
-        </>
-      )}
     </>
   );
 }
