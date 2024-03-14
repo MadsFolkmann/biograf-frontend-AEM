@@ -57,7 +57,7 @@ interface Info {
   info: string;
 }
 
-let biografer: Array<string> = [];
+let biografer: Array<Biograf> = [];
 let film: Array<Film> = [];
 let forestillinger: Array<Forestilling> = [];
 let sale: Array<Sal> = [];
@@ -66,11 +66,23 @@ let info: Info | null = null;
 
 /////////////////// GET ROUTES ///////////////////
 
-async function getBiografer(): Promise<Array<string>> {
+async function getBiografer(): Promise<Array<Biograf>> {
   if (biografer.length > 0) return [...biografer];
-  const res = await fetch(BIOGRAF_URL).then(handleHttpErrors);
-  biografer = [...res];
-  return biografer;
+
+  try {
+    const res = await fetch(BIOGRAF_URL);
+    if (!res.ok) {
+      throw new Error("Fetch request failed");
+    }
+
+    const biograferData = await res.json(); // Parse responsen som JSON
+    console.log("Biografer fetched successfully:", biograferData); // Log dataene
+    biografer = biograferData; // Tildel dataene til biografer-arrayen
+    return biografer;
+  } catch (error) {
+    console.error("Error fetching biografer:", error);
+    throw error; // Rethrow the error to handle it elsewhere
+  }
 }
 
 async function getBiograf(id: number): Promise<Biograf> {
