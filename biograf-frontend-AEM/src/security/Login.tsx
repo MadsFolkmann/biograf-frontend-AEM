@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthProvider";
-import { User } from "../services/AuthFacade";
+import { User } from "../services/authFacade";
 import "./login.css";
 import React from "react";
 
