@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import Biograf from "./Component/Biograf";
-// import BiografList from "./List/BiografList";
+import { Biograf } from "./Component/Biograf";
+import BiografList from "./List/BiografList";
 import BiografForm from "./Form/BiografForm";
 import BiografLayout from "./Form/BiografLayout";
 import Login from "./security/Login";
@@ -15,7 +15,7 @@ export default function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/biograf" element={<BiografLayout />} />
+        <Route path="/biograf" element={<BiografList />} />
         <Route path="/biograf/:id" element={<Biograf />} />
         <Route
           path="/addBiograf"

@@ -1,31 +1,41 @@
-import { useParams } from "react-router-dom";
-import { getBiografer, Biograf } from "../services/apiFacade";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { getBiografer } from "../services/apiFacade";
+import { Link } from "react-router-dom";
+import { useAuth } from "../security/AuthProvider";
 
-export default function Biograf() {
-  const { id } = useParams();
-  console.log("id", id);
+interface Biograf {
+  id: number;
+  navn: string;
+  adresse: string;
+  antalSale: number;
+}
 
-  const [biograf, setBiograf] = useState<Biograf | null>(null);
+export const Biograf = () => {
+  const [biografer, setBiografer] = useState<Biograf[]>([]);
+  const auth = useAuth();
+
   useEffect(() => {
-    getBiografer().then((res) => {
-      const foundBiograf = res.find((bio) => bio.id === Number(id));
-      setBiograf(foundBiograf);
-    });
-  }, [id]);
+    getBiografer().then((res) => setBiografer(res));
+  }, []);
 
   return (
-    <div>
-      {biograf ? (
-        <>
-          <h2>{biograf.navn}</h2>
-          <p>Address: {biograf.adresse}</p>
-          <p>Number of Screens: {biograf.antalSale}</p>
-          {/* Add additional information here */}
-        </>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </div>
+    <>
+      <h2>Biografer</h2>
+      <p>Se Biografer.</p>
+
+      <ul>
+        {biografer.map((item, index) => (
+          <li key={index}>
+            <Link to={`/${item.id}`}>{item.navn}</Link>
+            {item}
+            {auth.isLoggedInAs(["ADMIN", "USER"]) && (
+              <Link className="recipe-btn" to="/addBiograf" state={item}>
+                Edit
+              </Link>
+            )}
+          </li>
+        ))}
+      </ul>
+    </>
   );
-}
+};

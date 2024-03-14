@@ -57,16 +57,28 @@ interface Info {
   info: string;
 }
 
+let biografer: Array<string> = [];
+let film: Array<Film> = [];
+let forestillinger: Array<Forestilling> = [];
+let sale: Array<Sal> = [];
+let sæder: Array<Sæde> = [];
 let info: Info | null = null;
 
 /////////////////// GET ROUTES ///////////////////
 
-async function getBiografer(): Promise<Array<Biograf>> {
-  return fetch(BIOGRAF_URL).then(handleHttpErrors);
+async function getBiografer(): Promise<Array<string>> {
+  if (biografer.length > 0) return [...biografer];
+  const res = await fetch(BIOGRAF_URL).then(handleHttpErrors);
+  biografer = [...res];
+  return biografer;
 }
 
 async function getBiograf(id: number): Promise<Biograf> {
-  return fetch(`${BIOGRAF_URL}/${id}`).then(handleHttpErrors);
+  const response = await fetch(`${BIOGRAF_URL}/${id}`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch biograf");
+  }
+  return await response.json();
 }
 
 async function getFilm(): Promise<Array<Film>> {
