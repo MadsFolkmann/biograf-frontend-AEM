@@ -15,8 +15,8 @@ export default function Home() {
 
   return (
     <>
-      <h2>Home</h2>
-      <p>Welcome to our homepage! (mainly meant to learn React Router)</p>
+      <h2>AEM Biograf</h2>
+      <p>Velkommen til AEM'S Biograf</p>
       <p style={{ color: "red" }}>{err}</p>
       <img style={{ width: 200 }} src="./logo.png" alt="logo" />
       {info && (
