@@ -26,7 +26,7 @@ export const Biograf = () => {
       <ul>
         {biografer.map((item, index) => (
           <li key={index}>
-            <Link to={`/${item.id}`}>{item.navn}</Link>
+            {/* <Link to={`/${item.id}`}>{item.navn}</Link> */}
             {item.id} - {item.navn}
             {auth.isLoggedInAs(["ADMIN", "USER"]) && (
               <Link className="recipe-btn" to="/addBiograf" state={item}>
