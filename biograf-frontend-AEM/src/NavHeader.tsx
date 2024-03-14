@@ -14,9 +14,19 @@ export default function NavHeader() {
         <li>
           <NavLink to="/biograf">Biografer</NavLink>
         </li>
+        <li>
+          <NavLink to="/film">Film</NavLink>
+        </li>
+
         {auth.isLoggedIn() && (
           <li>
             <NavLink to="/addBiograf">Tilføj Biograf</NavLink>
+          </li>
+        )}
+
+        {auth.isLoggedIn() && (
+          <li>
+            <NavLink to="/addFilm">Tilføj Film</NavLink>
           </li>
         )}
         <AuthStatus />

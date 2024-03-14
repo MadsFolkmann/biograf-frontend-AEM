@@ -1,19 +1,36 @@
-nav-header {
+/* Header styling */
+.nav-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Sørg for, at headeren vises over alt andet indhold */
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 20px;
+  background-color: #333; /* Dark background color */
+  color: #fff; /* Text color */
+  width: 100%; /* Fyld hele bredden af siden */
 }
 
+/* Page content */
+/* Page content */
 .page-content {
-  opacity: 1;
-  transition: opacity 1.5s ease-in-out;
+  padding: 80px 20px 20px; /* Top padding for at undgå overlap med header */
+  min-height: 100vh; /* Sørg for, at indholdet fylder hele skærmen */
+  width: 100%; /* Gør indholdet bredere */
+  margin: 0 auto; /* Centrer indholdet vandret */
 }
 
+/* Layout styling */
 .app-layout {
-  margin-left: 100px;
+  margin-top: 80px; /* Afstanden fra toppen af siden til indholdet */
+  margin: 0 auto; /* Centrer indholdet vandret */
+  padding: 2rem; /* Tilføj polstring rundt om indholdet */
+  width: 100%; /* Gør indholdet bredere */
 }
 
+/* Navigation menu styling */
 nav ul {
   list-style: none;
   font-size: 1.2rem;
@@ -21,28 +38,27 @@ nav ul {
   margin: 0;
 }
 
-nav a.active {
+nav ul li {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+  color: lightblue; /* Skift farve ved hover */
+}
+
+nav ul li a.active {
   font-weight: bold;
   text-decoration: underline;
 }
 
-nav ul li {
-  color: darkcyan;
-  display: inline-block;
-}
-
-nav ul li a {
-  text-decoration: none; /* Removes underline from links */
-  color: inherit; /* Inherits color from parent element */
-  outline: none;
-  display: inline-block;
-  margin-right: 1rem;
-}
-.nav ul .active {
-  color: lightblue;
-  text-decoration: underline;
-}
-
+/* Vertical alignment for anchor tags */
 .vertical-a-tags {
   display: flex;
   flex-direction: column;

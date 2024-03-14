@@ -1,41 +1,51 @@
+/* Container til biografsektionen */
 .biograf-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+  width: 100%; /* Fyld hele bredden af siden */
+  margin: 20px auto; /* Centrer containeren vandret på siden */
+  padding: 20px; /* Tilføj polstring rundt om indholdet */
+  box-sizing: border-box; /* Inkluder padding i den samlede bredde */
 }
 
+/* Overskriftsstyling for biografsektionen */
 .biograf-header {
-  text-align: center;
-  margin-bottom: 20px;
+  text-align: center; /* Centrer tekst */
+  margin-bottom: 20px; /* Tilføj mellemrum nedenunder overskriften */
 }
 
+/* Styling for listen af biografer */
 .biograf-list {
-  list-style: none;
-  padding: 0;
+  list-style: none; /* Fjern standardpunkter fra listen */
+  padding: 0; /* Fjern indvendig polstring fra listen */
 }
 
+/* Styling for hvert enkelt biografitem */
 .biograf-item {
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
+  background-color: #f9f9f9; /* Baggrundsfarve */
+  border-radius: 5px; /* Afrund hjørnerne */
+  padding: 50px; /* Tilføj polstring rundt om indholdet */
+  margin-bottom: 10px; /* Tilføj mellemrum nedenunder hvert item */
+  display: flex; /* Brug flexbox til at placere indholdet */
 }
 
+/* Hover-effekt for biografitems */
 .biograf-item:hover {
-  background-color: #e9e9e9;
+  background-color: #e9e9e9; /* Ændre baggrundsfarve ved hover */
 }
 
+/* Styling for biograf-links */
 .biograf-link {
-  text-decoration: none;
-  color: #333;
+  text-decoration: none; /* Fjern understregning fra links */
+  color: #333; /* Sæt tekstfarven til mørkegrå */
 }
 
+/* Styling for rediger-link */
 .biograf-edit {
-  color: #007bff;
-  text-decoration: none;
-  margin-left: 10px;
+  color: #007bff; /* Sæt tekstfarven til en blå nuance */
+  cursor: pointer; /* Gør cursoren til en pegefinger for at angive klikbarhed */
+  margin-left: 10px; /* Tilføj lidt mellemrum til venstre for linket */
 }
 
+/* Hover-effekt for rediger-link */
 .biograf-edit:hover {
-  text-decoration: underline;
+  text-decoration: underline; /* Tilføj understregning ved hover */
 }

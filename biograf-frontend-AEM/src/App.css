@@ -1,10 +1,12 @@
+/* Styling for the root element */
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  max-width: 1280px; /* Sæt maksimal bredde for at centrere indholdet */
+  margin: 0 auto; /* Centrer elementet vandret */
+  padding: 2rem; /* Tilføj polstring rundt om indholdet */
 }
 
+/* Styling for aktive navigationselementer */
 nav a.active {
-  font-weight: bold;
-  text-decoration: underline;
+  font-weight: bold; /* Gør teksten fed */
+  text-decoration: underline; /* Tilføj understregning til teksten */
 }

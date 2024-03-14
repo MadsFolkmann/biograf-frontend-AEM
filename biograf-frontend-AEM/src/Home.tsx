@@ -15,10 +15,12 @@ export default function Home() {
 
   return (
     <>
+      {/* <img style={{ width: 200 }} src="https://vectorportal.com/storage/ames_3603.jpg" alt="logo" /> */}
+
       <h2>AEM Biograf</h2>
       <p>Velkommen til AEM'S Biograf</p>
+      <p>Vi har nordens bedste udvalg af film hernede!</p>
       <p style={{ color: "red" }}>{err}</p>
-      <img style={{ width: 200 }} src="./logo.png" alt="logo" />
       {info && (
         <>
           <h3>Info about the backend data used for this example</h3>

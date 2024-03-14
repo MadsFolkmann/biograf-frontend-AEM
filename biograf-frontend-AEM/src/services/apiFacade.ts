@@ -93,10 +93,24 @@ async function getBiograf(id: number): Promise<Biograf> {
   return await response.json();
 }
 
-async function getFilm(): Promise<Array<Film>> {
-  return fetch(FILM_URL).then(handleHttpErrors);
-}
+async function getFilms(): Promise<Array<Film>> {
+  if (film.length > 0) return [...film];
 
+  try {
+    const res = await fetch(FILM_URL);
+    if (!res.ok) {
+      throw new Error("Fetch request failed");
+    }
+
+    const filmData = await res.json();
+    console.log("Film fetched successfully:", filmData);
+    film = filmData;
+    return film;
+  } catch (error) {
+    console.error("Error fetching film:", error);
+    throw error;
+  }
+}
 async function getSpecificFilm(id: number): Promise<Film> {
   return fetch(`${FILM_URL}/${id}`).then(handleHttpErrors);
 }
@@ -189,4 +203,4 @@ export type { Biograf, Film, Forestilling, Sal, Sæde, Info };
 
 export { deleteBiograf, deleteFilm, deleteForestilling, deleteSal, deleteSæde };
 export { addBiograf, addFilm, addForestilling, addSal, addSæde };
-export { getBiografer, getBiograf, getFilm, getSpecificFilm, getForestillinger, getForestilling, getSale, getSal, getSæder, getSæde, getInfo };
+export { getBiografer, getBiograf, getFilms, getSpecificFilm, getForestillinger, getForestilling, getSale, getSal, getSæder, getSæde, getInfo };
