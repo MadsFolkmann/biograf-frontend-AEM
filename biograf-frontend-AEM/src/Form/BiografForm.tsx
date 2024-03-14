@@ -1,6 +1,6 @@
 import "./BiografForm.css";
 import { useState, useEffect } from "react";
-import { addBiograf, deleteBiograf, Biograf } from "../services/apiFacade";
+import { addBiograf, deleteBiograf, Biograf, getBiografer } from "../services/apiFacade";
 import { useLocation } from "react-router-dom";
 
 const EMPTY_BIOGRAF = {
@@ -11,15 +11,13 @@ const EMPTY_BIOGRAF = {
 };
 
 export default function BiografForm() {
+  const [biografer, setBiografer] = useState<Biograf[]>([]);
   const biografToEdit = useLocation().state || null;
   const [formData, setFormData] = useState<Biograf>(biografToEdit || EMPTY_BIOGRAF);
 
   useEffect(() => {
-    if (!biografToEdit) {
-      // Clear form data if editing mode is exited
-      setFormData({ ...EMPTY_BIOGRAF });
-    }
-  }, [biografToEdit]);
+    getBiografer().then((res) => setBiografer(res));
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

@@ -6,6 +6,7 @@ const FILM_URL = API_URL + "/film";
 const FORESTILLING_URL = API_URL + "/forestilling";
 const SAL_URL = API_URL + "/sal";
 const SÆDE_URL = API_URL + "/sæde";
+const INFO_URL = API_URL + "/info";
 
 interface Biograf {
   id: number;
@@ -50,6 +51,14 @@ interface Sæde {
   optaget: boolean;
 }
 
+interface Info {
+  reference: string;
+  created: string;
+  info: string;
+}
+
+let info: Info | null = null;
+
 /////////////////// GET ROUTES ///////////////////
 
 async function getBiografer(): Promise<Array<Biograf>> {
@@ -90,6 +99,14 @@ async function getSæder(): Promise<Array<Sæde>> {
 
 async function getSæde(id: number): Promise<Sæde> {
   return fetch(`${SÆDE_URL}/${id}`).then(handleHttpErrors);
+}
+
+async function getInfo(): Promise<Info> {
+  if (info) {
+    return info;
+  }
+  info = (await fetch(INFO_URL).then(handleHttpErrors)) as Info;
+  return info;
 }
 
 /////////////////// POST ROUTES ///////////////////
@@ -144,8 +161,8 @@ async function deleteSæde(id: number): Promise<void> {
   return fetch(`${SÆDE_URL}/${id}`, options).then(handleHttpErrors);
 }
 
-export type { Biograf, Film, Forestilling, Sal, Sæde };
+export type { Biograf, Film, Forestilling, Sal, Sæde, Info };
 
 export { deleteBiograf, deleteFilm, deleteForestilling, deleteSal, deleteSæde };
 export { addBiograf, addFilm, addForestilling, addSal, addSæde };
-export { getBiografer, getBiograf, getFilm, getSpecificFilm, getForestillinger, getForestilling, getSale, getSal, getSæder, getSæde };
+export { getBiografer, getBiograf, getFilm, getSpecificFilm, getForestillinger, getForestilling, getSale, getSal, getSæder, getSæde, getInfo };

@@ -1,37 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { getBiografer } from "../services/apiFacade";
-import { Link } from "react-router-dom";
-import { useAuth } from "../security/AuthProvider";
+import { useParams } from "react-router-dom";
+import { getBiografer, Biograf } from "../services/apiFacade";
+import { useEffect, useState } from "react";
 
-export const Biograf = () => {
-  const [biografer, setBiografer] = useState<Biograf[]>();
-  const auth = useAuth();
+export default function Biograf() {
+  const { id } = useParams();
+  console.log("id", id);
 
+  const [biograf, setBiograf] = useState<Biograf | null>(null);
   useEffect(() => {
-    getBiografer().then((res) => setBiografer(res));
-  }, []);
+    getBiografer().then((res) => {
+      const foundBiograf = res.find((bio) => bio.id === Number(id));
+      setBiograf(foundBiograf);
+    });
+  }, [id]);
 
   return (
     <div>
-      <h1>Biografer</h1>
-      <p>Her er en liste over biografer</p>
-      <ul>
-        {biografer.map((biograf) => (
-          <li key={biograf.id}>
-            <Link to={`/${biograf.id}`}>{biograf.navn}</Link>
-            {auth.isLoggedInAs(["ADMIN", "USER"]) && (
-              <Link className="recipe-btn" to={`/editBiograf/${biograf.id}`}>
-                Edit
-              </Link>
-            )}
-          </li>
-        ))}
-      </ul>
+      {biograf ? (
+        <>
+          <h2>{biograf.navn}</h2>
+          <p>Address: {biograf.adresse}</p>
+          <p>Number of Screens: {biograf.antalSale}</p>
+          {/* Add additional information here */}
+        </>
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
-};
-
-interface Biograf {
-  id: number | null;
-  name: string;
 }
