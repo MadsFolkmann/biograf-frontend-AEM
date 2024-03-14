@@ -1,5 +1,5 @@
 import { Link, useSearchParams } from "react-router-dom";
-import "./BiografLayout.css";
+import "../Form/BiografForm.css"; 
 import { useEffect, useState } from "react";
 import { Biograf as ApiBiograf, getBiografer } from "../services/apiFacade";
 import { useAuth } from "../security/AuthProvider";
