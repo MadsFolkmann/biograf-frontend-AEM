@@ -12,7 +12,7 @@ export default function NavHeader() {
           <NavLink to="/">Home</NavLink>
         </li>
         <li>
-          <NavLink to="/biograf">Biografer</NavLink>
+          <NavLink to="/biografer">Biografer</NavLink>
         </li>
         {auth.isLoggedIn() && (
           <li>
