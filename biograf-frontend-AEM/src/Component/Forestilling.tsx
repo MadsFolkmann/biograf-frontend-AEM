@@ -10,7 +10,7 @@ interface Forestilling {
   film: string;
   biograf: string;
   sal: number;
-  dato: string;
+  sæde: number;
   tidspunkt: string;
 }
 

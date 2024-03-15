@@ -32,6 +32,12 @@ export default function NavHeader() {
             <NavLink to="/addFilm">Tilføj Film</NavLink>
           </li>
         )}
+
+        {auth.isLoggedIn() && (
+          <li>
+            <NavLink to="/addForestilling">Tilføj Forestilling</NavLink>
+          </li>
+        )}
         <AuthStatus />
       </ul>
     </nav>
