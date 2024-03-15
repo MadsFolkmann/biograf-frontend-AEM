@@ -32,12 +32,29 @@
   margin-top: 10px;
 }
 
-.forestilling-edit {
-  margin-left: 10px;
-  color: #28a745;
-  text-decoration: none;
-}
-
 .forestilling-edit:hover {
   text-decoration: underline;
+}
+
+button {
+  padding: 8px 16px; /* Mindre padding */
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 4px; /* Mindre font-størrelse */
+}
+
+.forestilling-edit {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }

@@ -74,8 +74,12 @@ export default function ForestillingForm() {
           <label htmlFor="tidspunkt">Tidspunkt:</label>
           <input type="text" id="tidspunkt" name="tidspunkt" value={formData.tidspunkt} onChange={handleChange} required />
         </div>
-        <button onClick={handleSubmit}>Add/Edit</button>
-        <button onClick={handleDelete}>Delete</button>
+        <button className="forestilling-edit" onClick={handleSubmit}>
+          Add/Edit
+        </button>
+        <button className="forestilling-edit" onClick={handleDelete}>
+          Delete
+        </button>
       </form>
       <p>{error}</p>
     </>

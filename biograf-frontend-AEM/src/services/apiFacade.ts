@@ -140,7 +140,22 @@ async function getForestilling(id: number): Promise<Forestilling> {
 }
 
 async function getSale(): Promise<Array<Sal>> {
-  return fetch(SAL_URL).then(handleHttpErrors);
+  if (sale.length > 0) return [...sale];
+
+  try {
+    const res = await fetch(SAL_URL);
+    if (!res.ok) {
+      throw new Error("Fetch request failed");
+    }
+
+    const salData = await res.json();
+    console.log("Sale fetched successfully:", salData);
+    sale = salData;
+    return sale;
+  } catch (error) {
+    console.error("Error fetching sale:", error);
+    throw error;
+  }
 }
 
 async function getSal(id: number): Promise<Sal> {

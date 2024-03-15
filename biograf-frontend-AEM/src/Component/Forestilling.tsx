@@ -32,14 +32,15 @@ export const Forestilling = () => {
           <li key={index} className="forestilling-item">
             <Link to={`/${item.id}`} className="forestilling-link">
               <li>
-                {item.id} - {item.film.titel}
+                Film: {item.id} - {item.film.titel}
               </li>
-              <li>{item.biograf.navn}</li>
-              {item.dato} - {item.tidspunkt}
+              <li> Biograf: {item.biograf.navn}</li>
+              <li>Saltype: {item.sal.salType}</li>
+              Tidspunkt: {item.tidspunkt}
             </Link>
             {auth.isLoggedInAs(["ADMIN", "USER"]) && (
               <Link to="/addForestilling" state={item} className="forestilling-edit">
-                Edit
+                <button className="forestilling-edit"> Edit</button>
               </Link>
             )}
           </li>

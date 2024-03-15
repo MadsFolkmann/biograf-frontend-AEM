@@ -20,16 +20,27 @@ input[type="text"] {
 }
 
 button {
-  padding: 10px 20px;
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 16px; /* Gør teksten på knappen større */
+  width: 100%; /* Gør knappen fuld bredde */
+}
+
+.forestilling-edit {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
 }
 
 .error-message {
