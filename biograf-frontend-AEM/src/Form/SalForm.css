@@ -1,0 +1,41 @@
+/* SalForm.css */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+button.sal-submit,
+button.sal-delete {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+button.sal-submit:hover,
+button.sal-delete:hover {
+  background-color: #0056b3;
+}
+
+p.error-message {
+  color: red;
+  margin-top: 0.5rem;
+}

@@ -5,7 +5,7 @@ const BIOGRAF_URL = API_URL + "/biograf";
 const FILM_URL = API_URL + "/film";
 const FORESTILLING_URL = API_URL + "/forestilling";
 const SAL_URL = API_URL + "/sal";
-const SÆDE_URL = API_URL + "/sæde";
+const SÆDE_URL = API_URL + "/sæder";
 const INFO_URL = API_URL + "/info";
 
 interface Biograf {
@@ -163,7 +163,22 @@ async function getSal(id: number): Promise<Sal> {
 }
 
 async function getSæder(): Promise<Array<Sæde>> {
-  return fetch(SÆDE_URL).then(handleHttpErrors);
+  if (sæder.length > 0) return [...sæder];
+
+  try {
+    const res = await fetch(SÆDE_URL);
+    if (!res.ok) {
+      throw new Error("Fetch request failed");
+    }
+
+    const sædeData = await res.json();
+    console.log("Sæder fetched successfully:", sædeData);
+    sæder = sædeData;
+    return sæder;
+  } catch (error) {
+    console.error("Error fetching sæder:", error);
+    throw error;
+  }
 }
 
 async function getSæde(id: number): Promise<Sæde> {
