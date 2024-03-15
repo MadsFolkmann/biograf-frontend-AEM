@@ -1,0 +1,43 @@
+.forestilling-container {
+  margin: 20px;
+}
+
+.forestilling-header {
+  font-size: 24px;
+  color: #333;
+}
+
+.forestilling-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.forestilling-item {
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+.forestilling-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.forestilling-link:hover {
+  text-decoration: underline;
+}
+
+.forestilling-details {
+  margin-top: 10px;
+}
+
+.forestilling-edit {
+  margin-left: 10px;
+  color: #28a745;
+  text-decoration: none;
+}
+
+.forestilling-edit:hover {
+  text-decoration: underline;
+}

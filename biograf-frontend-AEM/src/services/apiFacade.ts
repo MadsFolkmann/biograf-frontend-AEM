@@ -116,7 +116,22 @@ async function getSpecificFilm(id: number): Promise<Film> {
 }
 
 async function getForestillinger(): Promise<Array<Forestilling>> {
-  return fetch(FORESTILLING_URL).then(handleHttpErrors);
+  if (forestillinger.length > 0) return [...forestillinger];
+
+  try {
+    const res = await fetch(FORESTILLING_URL);
+    if (!res.ok) {
+      throw new Error("Fetch request failed");
+    }
+
+    const forestillingData = await res.json();
+    console.log("Forestillinger fetched successfully:", forestillingData);
+    forestillinger = forestillingData;
+    return forestillinger;
+  } catch (error) {
+    console.error("Error fetching forestillinger:", error);
+    throw error;
+  }
 }
 
 async function getForestilling(id: number): Promise<Forestilling> {

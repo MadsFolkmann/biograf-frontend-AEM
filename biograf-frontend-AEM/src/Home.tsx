@@ -27,6 +27,43 @@ export default function Home() {
           </div>
         ))}
       </div>
+
+      {/* Footer */}
+      <footer class="biograf-footer">
+        <div class="footer-social-media">
+          <div class="footer-attribution">Made by @AEM</div>
+
+          <ul>
+            <li>
+              <a href="#Facebook">
+                <img
+                  src="https://static.vecteezy.com/system/resources/previews/023/986/999/non_2x/facebook-logo-facebook-logo-transparent-facebook-icon-transparent-free-free-png.png"
+                  alt="Facebook logo"
+                  class="footer-social-media-logo"
+                />
+              </a>
+            </li>
+            <li>
+              <a href="#Twitter">
+                <img
+                  src="https://seeklogo.com/images/T/twitter-x-logo-0339F999CF-seeklogo.com.png?v=638264860180000000"
+                  alt="Facebook logo"
+                  class="footer-social-media-logo"
+                />
+              </a>
+            </li>
+            <li>
+              <a href="#instagram">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png?20200512141346"
+                  alt="Facebook logo"
+                  class="footer-social-media-logo"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </footer>
     </div>
   );
 }

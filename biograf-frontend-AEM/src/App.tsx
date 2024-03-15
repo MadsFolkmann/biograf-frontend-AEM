@@ -1,6 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import { Biograf } from "./Component/Biograf";
 import { Film } from "./Component/Film";
+import { Forestilling } from "./Component/Forestilling";
+
 import BiografList from "./List/BiografList";
 import BiografForm from "./Form/BiografForm";
 import FilmForm from "./Form/FilmForm";
@@ -20,6 +22,7 @@ export default function App() {
         <Route path="/biograf" element={<Biograf />} />
         <Route path="/biograf/:id" element={<Biograf />} />
         <Route path="/film" element={<Film />} />
+        <Route path="/forestilling" element={<Forestilling />} />
 
         <Route
           path="/addBiograf"

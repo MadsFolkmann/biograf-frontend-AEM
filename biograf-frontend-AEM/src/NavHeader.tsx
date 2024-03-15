@@ -17,6 +17,9 @@ export default function NavHeader() {
         <li>
           <NavLink to="/film">Film</NavLink>
         </li>
+        <li>
+          <NavLink to="/forestilling">Forestillinger</NavLink>
+        </li>
 
         {auth.isLoggedIn() && (
           <li>

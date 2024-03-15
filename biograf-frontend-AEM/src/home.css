@@ -1,3 +1,4 @@
+/* Home-komponent */
 .home-container {
   text-align: center; /* Centrerer indholdet */
   margin-top: 50px; /* Lidt afstand fra toppen */
@@ -19,4 +20,49 @@
   height: 100px;
   margin: 0 auto;
   display: block;
+}
+
+/* Footer */
+.biograf-footer {
+  background-color: #333; /* Mørk baggrundsfarve */
+  color: #fff; /* Hvid tekstfarve */
+  padding: 10px 0; /* Mindre padding for at mindske højden */
+  width: 100%; /* Gør footeren fuld bredde */
+  position: fixed; /* Fastgør footeren til bunden af skærmen */
+  bottom: 0; /* Placer footeren nederst på skærmen */
+  text-align: center; /* Centrer indholdet */
+  left: 0%;
+}
+
+.footer-social-media {
+  display: inline-block; /* Sørg for, at elementet opfører sig som en inline-blok, så det kan placeres ved siden af hinanden */
+}
+
+.footer-social-media img {
+  width: 30px; /* Juster bredden efter behov */
+  height: auto; /* Tillad højden at justeres automatisk for at bevare billedets proportioner */
+  margin: 0 5px; /* Tilføj lidt afstand rundt om logoet */
+}
+
+.footer-social-media ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-social-media ul li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.footer-social-media ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-social-media ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-attribution {
+  margin-top: 10px; /* Lidt afstand over attribueringen */
 }

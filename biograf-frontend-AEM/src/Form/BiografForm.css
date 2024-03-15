@@ -1,47 +1,59 @@
-/* BiografForm.css */
-
-.biograf-form-container {
-  width: 50%;
-  margin: auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+body {
+  font-family: Arial, sans-serif; /* Brug en mere professionel skrifttype */
 }
 
-.form-group {
-  margin-bottom: 15px;
+form {
+  max-width: 500px; /* Begræns formularens bredde */
+  margin: 0 auto; /* Centrer formularen */
+  padding: 20px; /* Tilføj padding rundt om formularen */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Tilføj en blød skygge rundt om formularen */
 }
 
 label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   font-weight: bold;
 }
 
 input[type="text"],
 input[type="number"] {
   width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+  padding: 12px;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  margin-bottom: 20px; /* Tilføj mere afstand mellem input-felter */
 }
 
 button {
-  padding: 10px 20px;
+  padding: 12px 24px;
   background-color: #007bff;
-  color: #fff;
+  color: #ffffff;
   border: none;
-  border-radius: 3px;
+  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-size: 16px; /* Gør teksten på knappen større */
+  width: 100%; /* Gør knappen fuld bredde */
 }
 
 button:hover {
   background-color: #0056b3;
 }
 
+.biograf-form-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 .error-message {
   color: red;
-  margin-top: 10px;
+  margin-top: 15px;
+  font-weight: bold; /* Gør fejlbeskeden fed */
 }
