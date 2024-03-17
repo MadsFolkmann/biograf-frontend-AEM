@@ -37,7 +37,7 @@ export const Film = () => {
           <li key={index} className="film-item">
             {" "}
             {/* Opdateret klassenavn */}
-            <Link to={`/${item.id}`} className="film-link">
+            <Link to={`/film/${item.id}`} className="film-link">
               {" "}
               {/* Opdateret klassenavn */}
               <div className="film-item-content">

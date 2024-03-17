@@ -29,9 +29,9 @@ interface Film {
 
 interface Forestilling {
   id: number;
-  biograf: Array<Biograf>;
-  film: Array<Film>;
-  sal: Array<Sal>;
+  biograf: Biograf;
+  film: Film;
+  sal: Sal;
   sæde: Array<Sæde>;
   tidspunkt: string;
 }
@@ -41,6 +41,7 @@ interface Sal {
   antalSæder: number;
   antalRækker: number;
   salType: string;
+  nummer: number;
 }
 
 interface Sæde {
@@ -114,6 +115,9 @@ async function getFilms(): Promise<Array<Film>> {
 }
 async function getSpecificFilm(id: number): Promise<Film> {
   return fetch(`${FILM_URL}/${id}`).then(handleHttpErrors);
+}
+async function getForestillingerByFilmID(id: number): Promise<Array<Forestilling>> {
+  return fetch(`${FORESTILLING_URL}/film/${id}`).then(handleHttpErrors);
 }
 
 async function getForestillinger(): Promise<Array<Forestilling>> {
@@ -249,4 +253,17 @@ export type { Biograf, Film, Forestilling, Sal, Sæde, Info };
 
 export { deleteBiograf, deleteFilm, deleteForestilling, deleteSal, deleteSæde };
 export { addBiograf, addFilm, addForestilling, addSal, addSæde };
-export { getBiografer, getBiograf, getFilms, getSpecificFilm, getForestillinger, getForestilling, getSale, getSal, getSæder, getSæde, getInfo };
+export {
+    getBiografer,
+    getBiograf,
+    getFilms,
+    getSpecificFilm,
+    getForestillinger,
+    getForestilling,
+    getSale,
+    getSal,
+    getSæder,
+    getSæde,
+    getInfo,
+    getForestillingerByFilmID,
+};
