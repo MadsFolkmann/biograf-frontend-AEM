@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthProvider";
 import { User } from "../services/authFacade";
 import "./login.css";
@@ -36,10 +35,17 @@ const Login = () => {
       });
   }
 
+  function handleRedirectToSignup() {
+    navigate("/opret");
+  }
+
   return (
     <div className="login-wrapper">
       <form className="login-form" onSubmit={handleSubmit}>
-        <h2>Login</h2>
+        <img
+          className="login-logo-form"
+          src="https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png"
+        ></img>
         <div className="login-form-group">
           <label htmlFor="username">Username</label>
           <input
@@ -62,6 +68,9 @@ const Login = () => {
         </div>
         <button type="submit" className="login-btn">
           Login
+        </button>
+        <button type="button" className="create-btn" onClick={handleRedirectToSignup}>
+          Opret
         </button>
       </form>
     </div>

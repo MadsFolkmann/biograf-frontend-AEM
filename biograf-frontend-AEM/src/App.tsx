@@ -10,6 +10,7 @@ import BiografForm from "./Form/BiografForm";
 import FilmForm from "./Form/FilmForm";
 import SalForm from "./Form/SalForm";
 import ForestillingForm from "./Form/ForestillingForm";
+import OpretForm from "./security/OpretForm";
 // import BiografLayout from "./Form/BiografLayout";
 import Login from "./security/Login";
 import Logout from "./security/Logout";
@@ -82,6 +83,7 @@ export default function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/opret" element={<OpretForm />} />
       </Routes>
     </Layout>
   );
