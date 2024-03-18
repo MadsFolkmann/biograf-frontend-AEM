@@ -32,6 +32,7 @@
   bottom: 0; /* Placer footeren nederst på skærmen */
   text-align: center; /* Centrer indholdet */
   left: 0%;
+  position: relative;
 }
 
 .footer-social-media {

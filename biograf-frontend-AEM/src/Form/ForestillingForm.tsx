@@ -64,7 +64,7 @@ export default function ForestillingForm() {
         </div>
         <div className="form-group">
           <label htmlFor="sal">Sal:</label>
-          <input type="text" id="sal" name="sal" value={formData.sal.navn} onChange={handleChange} required />
+          <input type="text" id="sal" name="sal" value={formData.sal.nummer} onChange={handleChange} required />
         </div>
         {/* <div className="form-group">
           <label htmlFor="sæde">Sæde:</label>
