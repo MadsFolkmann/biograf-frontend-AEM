@@ -47,6 +47,8 @@ export default function FilmForm() {
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
+      console.log("formData", formData);
+      
       const newFilm = await addFilm(formData);
       alert("New film added");
       console.info("New/Edited Film", newFilm);

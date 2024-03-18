@@ -37,11 +37,18 @@ interface Forestilling {
 }
 
 interface Sal {
-  id: number;
-  antalSæder: number;
-  antalRækker: number;
-  salType: string;
-  nummer: number;
+    id: number;
+    biograf: Biograf | null;
+    antalSæderPrRække: 0;
+    antalRækker: number;
+    salType: SalType;
+    nummer: number;
+}
+
+enum SalType {
+    LILLE = "LILLE",
+    MELLEM = "MELLEM",
+    STOR = "STOR",
 }
 
 interface Sæde {
@@ -251,6 +258,7 @@ async function deleteSæde(id: number): Promise<void> {
 
 export type { Biograf, Film, Forestilling, Sal, Sæde, Info };
 
+export { SalType }
 export { deleteBiograf, deleteFilm, deleteForestilling, deleteSal, deleteSæde };
 export { addBiograf, addFilm, addForestilling, addSal, addSæde };
 export {
