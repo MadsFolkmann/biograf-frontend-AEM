@@ -51,7 +51,7 @@ export default function OpretForm() {
           src="https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png"
         ></img>
         <div className="signup-form-group">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">Brugernavn</label>
           <input
             type="text"
             name="username"
@@ -65,7 +65,7 @@ export default function OpretForm() {
           <input type="email" name="email" value={user.email} onChange={(e) => setUser((prev) => ({ ...prev, email: e.target.value }))} required />
         </div>
         <div className="signup-form-group">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Adgangskode</label>
           <input
             type="password"
             name="password"
@@ -75,7 +75,7 @@ export default function OpretForm() {
           />
         </div>
         <div className="signup-form-group">
-          <label htmlFor="firstName">First Name</label>
+          <label htmlFor="firstName">Navn</label>
           <input
             type="text"
             name="firstName"
@@ -85,7 +85,7 @@ export default function OpretForm() {
           />
         </div>
         <div className="signup-form-group">
-          <label htmlFor="lastName">Last Name</label>
+          <label htmlFor="lastName">Efternavn</label>
           <input
             type="text"
             name="lastName"
@@ -105,11 +105,11 @@ export default function OpretForm() {
           />
         </div>
         <div className="signup-form-group">
-          <label htmlFor="city">City</label>
+          <label htmlFor="city">By</label>
           <input type="text" name="city" value={user.city} onChange={(e) => setUser((prev) => ({ ...prev, city: e.target.value }))} required />
         </div>
         <div className="signup-form-group">
-          <label htmlFor="zipCode">Zip Code</label>
+          <label htmlFor="zipCode">Postnummer</label>
           <input
             type="text"
             name="zipCode"
@@ -119,12 +119,12 @@ export default function OpretForm() {
           />
         </div>
         <div className="signup-form-group">
-          <button type="submit">Sign Up</button>
+          <button type="submit">Opret Bruger</button>
         </div>
 
         <div className="signup-form-group">
           <Link to="/login" className="back-to-login">
-            <button>Back to Login</button>
+            <button>Tilbage Til Login</button>
           </Link>
         </div>
         {err && <div className="signup-form-group error">{err}</div>}

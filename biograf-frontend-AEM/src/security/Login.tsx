@@ -47,7 +47,7 @@ const Login = () => {
           src="https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png"
         ></img>
         <div className="login-form-group">
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">Brugernavn</label>
           <input
             type="text"
             name="username"
@@ -57,7 +57,7 @@ const Login = () => {
           />
         </div>
         <div className="login-form-group">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Adgangskode</label>
           <input
             type="password"
             name="password"
