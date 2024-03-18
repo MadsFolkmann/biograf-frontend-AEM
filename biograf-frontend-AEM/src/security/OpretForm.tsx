@@ -1,26 +1,45 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "./AuthProvider";
-import { User } from "../services/authFacade";
+import { SpecialUser } from "./specialUserProvider";
 
-const EMPTY_USER: User = { username: "", password: "" };
+const EMPTY_USER: SpecialUser = { username: "", email: "", password: "", firstName: "", lastName: "", address: "", city: "", zipCode: "" };
 
 export default function OpretForm() {
   const [user, setUser] = useState(EMPTY_USER);
   const navigate = useNavigate();
-  const auth = useAuth();
-  const [err, setErr] = useState(null);
+  const [err, setErr] = useState<string | null>(null);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setErr(null);
     try {
-      await auth.signUp(user);
-      navigate("/login"); // Redirect to login page after successful sign up
+      // Call the API to create the user
+      const response = await createUser(user);
+
+      // Check if the user was created successfully
+      if (response.ok) {
+        navigate("/login"); // Redirect to login page after successful sign up
+      } else {
+        const data = await response.json();
+        setErr(data.message); // Set error message if user creation failed
+      }
     } catch (error) {
-      setErr(error.message);
+      setErr("Failed to create user: " + error.message);
     }
   }
+
+  const createUser = async (user: SpecialUser): Promise<Response> => {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    };
+
+    // Ændre URL'en til den eksterne adresse
+    return fetch("https://biografaem.azurewebsites.net/api/specialusers", options);
+  };
 
   return (
     <div className="signup-wrapper">
@@ -36,12 +55,60 @@ export default function OpretForm() {
           />
         </div>
         <div className="signup-form-group">
+          <label htmlFor="email">Email</label>
+          <input type="email" name="email" value={user.email} onChange={(e) => setUser((prev) => ({ ...prev, email: e.target.value }))} required />
+        </div>
+        <div className="signup-form-group">
           <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
             value={user.password}
             onChange={(e) => setUser((prev) => ({ ...prev, password: e.target.value }))}
+            required
+          />
+        </div>
+        <div className="signup-form-group">
+          <label htmlFor="firstName">First Name</label>
+          <input
+            type="text"
+            name="firstName"
+            value={user.firstName}
+            onChange={(e) => setUser((prev) => ({ ...prev, firstName: e.target.value }))}
+            required
+          />
+        </div>
+        <div className="signup-form-group">
+          <label htmlFor="lastName">Last Name</label>
+          <input
+            type="text"
+            name="lastName"
+            value={user.lastName}
+            onChange={(e) => setUser((prev) => ({ ...prev, lastName: e.target.value }))}
+            required
+          />
+        </div>
+        <div className="signup-form-group">
+          <label htmlFor="address">Address</label>
+          <input
+            type="text"
+            name="address"
+            value={user.address}
+            onChange={(e) => setUser((prev) => ({ ...prev, address: e.target.value }))}
+            required
+          />
+        </div>
+        <div className="signup-form-group">
+          <label htmlFor="city">City</label>
+          <input type="text" name="city" value={user.city} onChange={(e) => setUser((prev) => ({ ...prev, city: e.target.value }))} required />
+        </div>
+        <div className="signup-form-group">
+          <label htmlFor="zipCode">Zip Code</label>
+          <input
+            type="text"
+            name="zipCode"
+            value={user.zipCode}
+            onChange={(e) => setUser((prev) => ({ ...prev, zipCode: e.target.value }))}
             required
           />
         </div>
