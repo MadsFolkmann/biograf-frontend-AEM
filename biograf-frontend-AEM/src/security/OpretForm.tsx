@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SpecialUser } from "./specialUserProvider";
+
+import "./OpretForm.css";
 
 const EMPTY_USER: SpecialUser = { username: "", email: "", password: "", firstName: "", lastName: "", address: "", city: "", zipCode: "" };
 
@@ -44,6 +46,10 @@ export default function OpretForm() {
   return (
     <div className="signup-wrapper">
       <form className="signup-form" onSubmit={handleSubmit}>
+        <img
+          className="login-logo-form"
+          src="https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png"
+        ></img>
         <div className="signup-form-group">
           <label htmlFor="username">Username</label>
           <input
@@ -114,6 +120,12 @@ export default function OpretForm() {
         </div>
         <div className="signup-form-group">
           <button type="submit">Sign Up</button>
+        </div>
+
+        <div className="signup-form-group">
+          <Link to="/login" className="back-to-login">
+            <button>Back to Login</button>
+          </Link>
         </div>
         {err && <div className="signup-form-group error">{err}</div>}
       </form>
