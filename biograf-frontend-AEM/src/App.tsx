@@ -12,6 +12,7 @@ import FilmForm from "./Form/FilmForm";
 import SalForm from "./Form/SalForm";
 import ForestillingForm from "./Form/ForestillingForm";
 import OpretForm from "./security/OpretForm";
+import BestillingForm from './Component/BestillingForm';
 // import BiografLayout from "./Form/BiografLayout";
 import Login from "./security/Login";
 import Logout from "./security/Logout";
@@ -31,6 +32,7 @@ export default function App() {
         
           <Route path="/film/:id" element={<FilmById />} />
         <Route path="/forestilling" element={<Forestilling />} />
+        <Route path="/bestilling" element={<BestillingForm />} />
 
         <Route
           path="/sal"
