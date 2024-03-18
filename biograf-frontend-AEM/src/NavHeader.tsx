@@ -1,4 +1,3 @@
-// NavHeader.jsx
 import React from "react";
 import { NavLink } from "react-router-dom";
 import AuthStatus from "./security/AuthStatus";
@@ -25,8 +24,8 @@ export default function NavHeader() {
         <li>
           <NavLink to="/forestilling">Forestillinger</NavLink>
         </li>
-        {auth.isLoggedIn() && <InfoDropdownMenu />}
-        {auth.isLoggedIn() && <AddDropdownMenu />}
+        {auth.isLoggedIn() && auth.isLoggedInAs(["ADMIN"]) && <InfoDropdownMenu />}
+        {auth.isLoggedIn() && auth.isLoggedInAs(["ADMIN"]) && <AddDropdownMenu />}
         <AuthStatus />
       </ul>
     </nav>

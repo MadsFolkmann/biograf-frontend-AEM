@@ -35,7 +35,7 @@ export const Sal = () => {
               </li>
               <li>{item.antalSæder}</li>
             </Link>
-            {auth.isLoggedInAs(["ADMIN", "USER"]) && (
+            {auth.isLoggedInAs(["ADMIN"]) && (
               <Link to="/addSal" state={item} className="sal-edit">
                 Edit
               </Link>

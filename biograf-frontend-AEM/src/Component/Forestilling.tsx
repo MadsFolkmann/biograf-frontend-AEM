@@ -38,7 +38,7 @@ export const Forestilling = () => {
               <li>Saltype: {item.sal.salType}</li>
               Tidspunkt: {item.tidspunkt}
             </Link>
-            {auth.isLoggedInAs(["ADMIN", "USER"]) && (
+            {auth.isLoggedInAs(["ADMIN"]) && (
               <Link to="/addForestilling" state={item} className="forestilling-edit">
                 <button className="forestilling-edit"> Edit</button>
               </Link>

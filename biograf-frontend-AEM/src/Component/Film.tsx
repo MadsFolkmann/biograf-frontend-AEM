@@ -49,7 +49,7 @@ export const Film = () => {
                 </span>
               </div>
             </Link>
-            {auth.isLoggedInAs(["ADMIN", "USER"]) && (
+            {auth.isLoggedInAs(["ADMIN"]) && (
               <Link to="/addFilm" state={item} className="film-edit">
                 {" "}
                 {/* Opdateret klassenavn */}

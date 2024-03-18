@@ -35,7 +35,7 @@ export const Sæde = () => {
               </li>
               <li>{item.sædeNummer}</li>
             </Link>
-            {auth.isLoggedInAs(["ADMIN", "USER"]) && (
+            {auth.isLoggedInAs(["ADMIN"]) && (
               <Link to="/addSæde" state={item} className="sæde-edit">
                 Edit
               </Link>
