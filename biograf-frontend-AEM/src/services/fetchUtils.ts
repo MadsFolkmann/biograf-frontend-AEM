@@ -15,10 +15,12 @@ export function makeOptions(method: string, body: object | null, addToken?: bool
   if (body) {
     opts.body = JSON.stringify(body);
   }
-  if (addToken) {
-    //@ts-ignore
+ if (addToken) {
+   //@ts-ignore
     opts.headers["Authorization"] = `Bearer ${localStorage.getItem("token")}`;
   }
+    console.log(body);
+    
   return opts;
 }
 

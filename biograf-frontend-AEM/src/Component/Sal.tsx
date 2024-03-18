@@ -1,48 +1,53 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { getSale } from "../services/apiFacade";
+import { getSale, Sal as ApiSal } from "../services/apiFacade";
 import { Link } from "react-router-dom";
 import { useAuth } from "../security/AuthProvider";
-// import "./Sal.css"; // Opdateret CSS-filnavn
-
-interface Sal {
-  id: number;
-  biograf: string;
-  antalSæder: number;
-  antalSæderRække: number;
-  salType: string;
-}
+import "./Sal.css";
 
 export const Sal = () => {
-  const [sale, setSale] = useState<Sal[]>([]);
-  const auth = useAuth();
+    const [sale, setSale] = useState<ApiSal[]>([]);
+    const auth = useAuth();
 
-  useEffect(() => {
-    getSale().then((res) => setSale(res));
-  }, []);
+    useEffect(() => {
+        getSale().then((res) => setSale(res));
+    }, []);
 
-  return (
-    <div className="sal-container">
-      <h2 className="sal-header">Sale</h2>
-      <p>Se sale.</p>
-
-      <ul className="sal-list">
-        {sale.map((item, index) => (
-          <li key={index} className="sal-item">
-            <Link to={`/${item.id}`} className="sal-link">
-              <li>
-                {item.id} - {item.biograf}
-              </li>
-              <li>{item.antalSæder}</li>
-            </Link>
-            {auth.isLoggedInAs(["ADMIN", "USER"]) && (
-              <Link to="/addSal" state={item} className="sal-edit">
-                Edit
-              </Link>
-            )}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+    return (
+        <div>
+            <h1>Sal Information</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Biograf</th>
+                        <th>Antal Sæder Pr Række</th>
+                        <th>Antal Rækker</th>
+                        <th>Sal Type</th>
+                        <th>Nummer</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {sale.map((sal) => (
+                        <tr key={sal.id}>
+                            <td>{sal.id}</td>
+                            <td>{sal.biograf ? sal.biograf?.navn : "N/A"}</td>
+                            <td>{sal.antalSæderPrRække}</td>
+                            <td>{sal.antalRækker}</td>
+                            <td>{sal.salType}</td>
+                            <td>{sal.nummer}</td>
+                            <td>
+                                {auth.isLoggedInAs(["ADMIN", "USER"]) && (
+                                    <Link to="/addSal" state={sal} className="sal-edit">
+                                        Edit
+                                    </Link>
+                                )}
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
 };

@@ -1,6 +1,6 @@
 import "./SalForm.css";
 import { useState, useEffect } from "react";
-import { addSal, deleteSal, Sal, getSale, Biograf, getBiografer, SalType } from "../services/apiFacade";
+import { addSal, deleteSal, Sal, getSale, Biograf, getBiografer, SalType,getBiografsale } from "../services/apiFacade";
 import { useLocation } from "react-router-dom";
 
 
@@ -28,13 +28,13 @@ export default function SalForm() {
         getBiografer().then((res) => setBiograf(res));
     }, []);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            [name]: value,
-        }));
-    };
+const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: name === "biograf" ? Number(value) : value,
+    }));
+};
 
     const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -44,17 +44,40 @@ export default function SalForm() {
         }
     };
 
-    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
-        try {
-            const newSal = await addSal(formData);
-            alert("New sal added");
-            console.info("New/Edited Sal", newSal);
-            setFormData(newSal);
-        } catch (error) {
-            setError("Error adding/editing sal");
+const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    
+    console.log(biograf);
+    
+    console.log(formData);
+    
+    
+    const biografSale = await getBiografsale(formData.biograf);
+    console.log(biografSale);
+    
+    if (biografSale.length < biograf[0].antalSale) {
+            console.log("Submit clicked");
+        try { 
+                            const modifiedData = {
+                                ...formData,
+                                nummer: Number(formData.nummer),
+                                antalRækker: Number(formData.antalRækker),
+                                antalSæderPrRække: Number(formData.antalSæderPrRække),
+                                biograf: { id: formData.biograf },
+            };
+            
+                const newSal = await addSal(modifiedData);
+                alert("New sal added");
+                console.info("New/Edited Sal", newSal);
+                setFormData(newSal);
+            } catch (error) {
+                setError("Error adding/editing sal");
+            }
+        } else {
+            setError("Cannot add more sale to this biograf");
         }
-    };
+    
+};
 
 return (
     <>
@@ -70,6 +93,10 @@ return (
                         </option>
                     ))}
                 </select>
+            </div>
+            <div className="form-group">
+                <label htmlFor="nummer">Sal Nummer:</label>
+                <input type="number" id="nummer" name="nummer" value={formData.nummer} onChange={handleChange} required />
             </div>
             <div className="form-group">
                 <label htmlFor="antalSæderPrRække">Antal Sæder Pr Række:</label>

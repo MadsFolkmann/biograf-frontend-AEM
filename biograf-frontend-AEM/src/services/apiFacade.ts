@@ -13,7 +13,6 @@ interface Biograf {
   navn: string;
   adresse: string;
   antalSale: number;
-  sal: Array<Sal>;
 }
 
 interface Film {
@@ -173,6 +172,10 @@ async function getSal(id: number): Promise<Sal> {
   return fetch(`${SAL_URL}/${id}`).then(handleHttpErrors);
 }
 
+async function getBiografsale(id: number): Promise<Array<Sal>> {
+  return fetch(`${SAL_URL}/biograf/${id}`).then(handleHttpErrors);
+}
+
 async function getSæder(): Promise<Array<Sæde>> {
   if (sæder.length > 0) return [...sæder];
 
@@ -273,5 +276,6 @@ export {
     getSæder,
     getSæde,
     getInfo,
-    getForestillingerByFilmID,
+  getForestillingerByFilmID,
+  getBiografsale
 };
