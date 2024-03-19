@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Biograf from './Biograf';
 import Film from './Film';
 import SeatSelection from './SeatSelection';
+import OrderTicket from './OrderTicket';
 
 const TicketBooking = () => {
   const [cinema, setCinema] = useState('');
@@ -33,12 +34,13 @@ const TicketBooking = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Biograf setCinema={setCinema} />
-      <Film setMovie={setMovie} />
-      <SeatSelection setSeats={setSeats} />
-      <button type="submit">Book Now</button>
-    </form>
+      <form onSubmit={handleSubmit}>
+        <Biograf setCinema={setCinema} />
+        <Film setMovie={setMovie} />
+        <SeatSelection setSeats={setSeats} />
+        <OrderTicket movie={movie} cinema={cinema} seats={seats} />
+        <button type="submit">Book Now</button>
+      </form>
   );
 };
 
