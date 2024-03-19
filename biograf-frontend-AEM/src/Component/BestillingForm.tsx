@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-const BestillingForm = () => {
+const BestillingForm = () => { // Add film and seats as props
   const [bestilling, setBestilling] = useState({
     name: '',
     email: '',
-    // Add other fields as necessary
+  
   });
 
   const handleChange = (event) => {
