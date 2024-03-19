@@ -30,7 +30,7 @@ export default function App() {
         <Route path="/biograf/:id" element={<Biograf />} />
         <Route path="/film" element={<Film />} />
         
-          <Route path="/film/:id" element={<FilmById />} />
+        <Route path="/film/:id" element={<FilmById />} />
         <Route path="/forestilling" element={<Forestilling />} />
         <Route path="/bestilling" element={<BestillingForm />} />
 
