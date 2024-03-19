@@ -6,6 +6,8 @@ import { Sal } from "./Component/Sal";
 import { Sæde } from "./Component/Sæde";
 import OmOs from "./Component/OmOs";
 
+import Medlemmer from "./security/Medlemmer";
+
 import FilmById from "./Component/FilmById";
 import BiografList from "./List/BiografList";
 import BiografForm from "./Form/BiografForm";
@@ -41,6 +43,15 @@ export default function App() {
           element={
             <RequireAuth roles={["ADMIN"]}>
               <Sæde />
+            </RequireAuth>
+          }
+        />
+
+        <Route
+          path="/medlemmer"
+          element={
+            <RequireAuth roles={["ADMIN"]}>
+              <Medlemmer />
             </RequireAuth>
           }
         />

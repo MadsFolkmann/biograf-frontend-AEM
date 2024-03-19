@@ -11,6 +11,7 @@ const InfoDropdownMenu = () => {
         <NavLink to="/biograf">Biografer</NavLink>
         <NavLink to="/forestilling">Forestillinger</NavLink>
         <NavLink to="/sal">Sal Oversigt</NavLink>
+        <NavLink to="/medlemmer">Medlems oversigt</NavLink>
       </div>
     </div>
   );

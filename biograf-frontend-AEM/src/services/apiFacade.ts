@@ -7,6 +7,7 @@ const FORESTILLING_URL = API_URL + "/forestilling";
 const SAL_URL = API_URL + "/sal";
 const SÆDE_URL = API_URL + "/sæder";
 const INFO_URL = API_URL + "/info";
+const MEDLEMMER_URL = API_URL + "/specialusers";
 
 interface Biograf {
   id: number;
@@ -36,18 +37,27 @@ interface Forestilling {
 }
 
 interface Sal {
-    id: number;
-    biograf: Biograf | null;
-    antalSæderPrRække: 0;
-    antalRækker: number;
-    salType: SalType;
-    nummer: number;
+  id: number;
+  biograf: Biograf | null;
+  antalSæderPrRække: 0;
+  antalRækker: number;
+  salType: SalType;
+  nummer: number;
+}
+
+interface Medlemmer {
+  id: number;
+  firstName: string;
+  lastName: string;
+  address: string;
+  city: string;
+  zipCode: string;
 }
 
 enum SalType {
-    LILLE = "LILLE",
-    MELLEM = "MELLEM",
-    STOR = "STOR",
+  LILLE = "LILLE",
+  MELLEM = "MELLEM",
+  STOR = "STOR",
 }
 
 interface Sæde {
@@ -70,6 +80,7 @@ let film: Array<Film> = [];
 let forestillinger: Array<Forestilling> = [];
 let sale: Array<Sal> = [];
 let sæder: Array<Sæde> = [];
+let medlemmer: Array<Medlemmer> = [];
 let info: Info | null = null;
 
 /////////////////// GET ROUTES ///////////////////
@@ -207,6 +218,25 @@ async function getInfo(): Promise<Info> {
   return info;
 }
 
+async function getMedlemmer(): Promise<Array<Medlemmer>> {
+  if (medlemmer.length > 0) return [...medlemmer];
+
+  try {
+    const res = await fetch(MEDLEMMER_URL);
+    if (!res.ok) {
+      throw new Error("Fetch request failed");
+    }
+
+    const medlemmerData = await res.json();
+    console.log("Medlemmer fetched successfully:", medlemmerData);
+    medlemmer = medlemmerData;
+    return medlemmer;
+  } catch (error) {
+    console.error("Error fetching medlemmer:", error);
+    throw error;
+  }
+}
+
 /////////////////// POST ROUTES ///////////////////
 async function addBiograf(newBiograf: Biograf): Promise<Biograf> {
   const options = makeOptions("POST", newBiograf, true);
@@ -259,23 +289,24 @@ async function deleteSæde(id: number): Promise<void> {
   return fetch(`${SÆDE_URL}/${id}`, options).then(handleHttpErrors);
 }
 
-export type { Biograf, Film, Forestilling, Sal, Sæde, Info };
+export type { Biograf, Film, Forestilling, Sal, Sæde, Info, Medlemmer };
 
-export { SalType }
+export { SalType };
 export { deleteBiograf, deleteFilm, deleteForestilling, deleteSal, deleteSæde };
 export { addBiograf, addFilm, addForestilling, addSal, addSæde };
 export {
-    getBiografer,
-    getBiograf,
-    getFilms,
-    getSpecificFilm,
-    getForestillinger,
-    getForestilling,
-    getSale,
-    getSal,
-    getSæder,
-    getSæde,
-    getInfo,
+  getBiografer,
+  getBiograf,
+  getFilms,
+  getSpecificFilm,
+  getForestillinger,
+  getForestilling,
+  getSale,
+  getSal,
+  getSæder,
+  getSæde,
+  getInfo,
   getForestillingerByFilmID,
-  getBiografsale
+  getBiografsale,
+  getMedlemmer,
 };
