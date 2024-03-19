@@ -32,7 +32,7 @@ export default function App() {
         
         <Route path="/film/:id" element={<FilmById />} />
         <Route path="/forestilling" element={<Forestilling />} />
-        <Route path="/bestilling" element={<BestillingForm />} />
+        <Route path="/sæde" element={<Sæde />} />
 
         <Route
           path="/sal"

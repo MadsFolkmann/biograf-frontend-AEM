@@ -1,48 +1,67 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { getSæder } from "../services/apiFacade";
-import { Link } from "react-router-dom";
-import { useAuth } from "../security/AuthProvider";
-
-interface Sæde {
-  id: number;
-  række: number;
-  sædeNummer: number;
-  sædeType: string;
-  pris: number;
-  optaget: boolean;
-}
-
-export const Sæde = () => {
-  const [sæder, setSæder] = useState<Sæde[]>([]);
-  const auth = useAuth();
-
-  useEffect(() => {
-    getSæder().then((res) => setSæder(res));
-  }, []);
-
-  return (
-    <div className="sæde-container">
-      <h2 className="sæde-header">Sæder</h2>
-      <p>Se sæder.</p>
-
-      <ul className="sæde-list">
-        {sæder.map((item, index) => (
-          <li key={index} className="sæde-item">
-            <Link to={`/${item.id}`} className="sæde-link">
-              <li>
-                {item.id} - {item.række}
-              </li>
-              <li>{item.sædeNummer}</li>
-            </Link>
-            {auth.isLoggedInAs(["ADMIN", "USER"]) && (
-              <Link to="/addSæde" state={item} className="sæde-edit">
-                Edit
-              </Link>
-            )}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+// import React, { useState, useEffect } from 'react';
+// import { getSæder } from '../services/apiFacade';
+// import { Link } from 'react-router-dom';
+// import { useAuth } from '../security/AuthProvider';
+// import './Sal.css';
+//
+// interface Sæde {
+//     id: number;
+//     række: number;
+//     sædeNummer: number;
+//     sædeType: string;
+//     pris: number;
+//     optaget: boolean;
+// }
+//
+// const Seat: React.FC<Sæde & { onSeatClick: (id: number) => void }> = ({ id, række, sædeNummer, optaget, onSeatClick }) => {
+//     const statusClass = optaget ? 'seat-reserved' : 'seat-available';
+//
+//     return (
+//         <button className={`seat ${statusClass}`} onClick={() => onSeatClick(id)} disabled={optaget}>
+//             {række}-{sædeNummer}
+//         </button>
+//     );
+// };
+//
+// export const Sæde = () => {
+//     const [sæder, setSæder] = useState<Sæde[]>([]);
+//     const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
+//     const auth = useAuth();
+//
+//     useEffect(() => {
+//         getSæder().then((res) => {
+//             console.log(res); // Log the fetched data
+//             setSæder(res);
+//         });
+//     }, []);
+//
+//     const handleSeatClick = (id: number) => {
+//         const seatIndex = sæder.findIndex(seat => seat.id === id);
+//         const updatedSæder = [...sæder];
+//         updatedSæder[seatIndex].optaget = !updatedSæder[seatIndex].optaget;
+//         setSæder(updatedSæder);
+//
+//         setSelectedSeats((prevSelectedSeats) =>
+//             prevSelectedSeats.includes(id) ? prevSelectedSeats.filter((seatId) => seatId !== id) : [...prevSelectedSeats, id]
+//         );
+//     };
+//
+//     return (
+//         <div className="sæde-container">
+//             <h2 className="sæde-header">Sæder</h2>
+//             <p>Se sæder.</p>
+//
+//             <div className="sæde-grid">
+//                 {sæder.map((sæde) => (
+//                     <Seat key={sæde.id} {...sæde} onSeatClick={handleSeatClick} />
+//                 ))}
+//             </div>
+//
+//             {auth.isLoggedInAs(['ADMIN', 'USER']) && (
+//                 <Link to="/addSæde" className="sæde-edit">
+//                     Edit
+//                 </Link>
+//             )}
+//         </div>
+//     );
+// };

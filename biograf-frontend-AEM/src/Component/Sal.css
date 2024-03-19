@@ -1,0 +1,96 @@
+/* Sal.css */
+
+#app {
+    /* Add your styles for the app container if needed */
+}
+
+h1 {
+    text-align: center;
+}
+
+.container {
+    width: 600px;
+    margin: auto;
+}
+
+.grid td {
+    width: 25px;
+    height: 35px;
+    border: 2px solid orange;
+    text-align: center;
+    float: left;
+    margin: 5px;
+}
+
+.grid td:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.reserved {
+    background: orange;
+    color: #fff;
+    display: inline-block;
+}
+
+.selected {
+    background: red;
+    color: #fff;
+    display: inline-block;
+}
+
+.reserved::after {
+    content: "R";
+}
+
+.selected::after {
+    content: "S";
+}
+
+.available::after {
+    content: "A";
+}
+
+.available {
+    color: #333;
+}
+
+li {
+    list-style: none;
+}
+
+.btnmargin {
+    margin-top: 15px;
+}
+
+/* New styles added */
+
+/* Add your new styles here */
+
+.seat {
+    /* Add your styles for the seat button */
+}
+
+.seat-reserved {
+    /* Add styles for reserved seats */
+}
+
+.seat-available {
+    /* Add styles for available seats */
+}
+
+.sæde-container {
+    /* Add container styles if needed */
+}
+
+.sæde-header {
+    /* Add header styles if needed */
+}
+
+.sæde-grid {
+    /* Add grid styles if needed */
+}
+
+.sæde-edit {
+    /* Add edit link styles if needed */
+}
