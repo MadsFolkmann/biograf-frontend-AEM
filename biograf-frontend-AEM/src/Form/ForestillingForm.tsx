@@ -60,18 +60,22 @@ useEffect(() => {
       console.log("formData", formData);
       
     try {
-    const modifiedData = {
-        ...formData,
-        film: { id: Number(formData.film) },
-        biograf: typeof formData.biograf === "object" ? { id: Number(formData.biograf.id) } : { id: Number(formData.biograf) },
-        sal: typeof formData.sal === "object" ? { id: Number(formData.sal.id) } : { id: Number(formData.sal) },
-    };
-      const newForestilling = await addForestilling(modifiedData);
-      alert("New forestilling added");
-      console.info("New/Edited Forestilling", newForestilling);
-      setFormData(newForestilling);
+        const modifiedData = {
+            ...formData,
+            film: { id: Number(formData.film) },
+            biograf: formData.biograf
+                ? typeof formData.biograf === "object"
+                    ? { id: Number(formData.biograf.id) }
+                    : { id: Number(formData.biograf) }
+                : null,
+            sal: formData.sal ? (typeof formData.sal === "object" ? { id: Number(formData.sal.id) } : { id: Number(formData.sal) }) : null,
+        };
+        const newForestilling = await addForestilling(modifiedData);
+        alert("New forestilling added");
+        console.info("New/Edited Forestilling", newForestilling);
+        setFormData(newForestilling);
     } catch (error) {
-      setError("Error adding/editing forestilling");
+        setError("Error adding/editing forestilling");
     }
   };
 
