@@ -28,10 +28,10 @@ interface Film {
 
 interface Forestilling {
   id: number;
-  biograf: Biograf;
-  film: Film;
-  sal: Sal;
-  sæde: Array<Sæde>;
+  biograf: Biograf | null;
+  film: Film | null;
+  sal: Sal | null;
+  sæder: Array<Sæde>;
   tidspunkt: string;
 }
 
