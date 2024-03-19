@@ -1,8 +1,7 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { getBiografer } from "../services/apiFacade";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../security/AuthProvider";
+import { getBiografer } from "../services/apiFacade";
 import "./Biograf.css";
 
 interface Biograf {
@@ -12,7 +11,7 @@ interface Biograf {
   antalSale: number;
 }
 
-export const Biograf = () => {
+const Biograf: React.FC = () => {
   const [biografer, setBiografer] = useState<Biograf[]>([]);
   const auth = useAuth();
 
@@ -31,7 +30,7 @@ export const Biograf = () => {
             <Link to={`/${item.id}`} className="biograf-link">
               {item.id} - {item.navn}
             </Link>
-            {auth.isLoggedInAs(["ADMIN", "USER"]) && (
+            {auth.isLoggedInAs(["ADMIN"]) && (
               <Link to="/addBiograf" state={item} className="biograf-edit">
                 Edit
               </Link>
@@ -42,3 +41,5 @@ export const Biograf = () => {
     </div>
   );
 };
+
+export default Biograf;

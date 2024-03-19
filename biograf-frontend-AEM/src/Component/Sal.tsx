@@ -38,7 +38,7 @@ export const Sal = () => {
                             <td>{sal.salType}</td>
                             <td>{sal.nummer}</td>
                             <td>
-                                {auth.isLoggedInAs(["ADMIN", "USER"]) && (
+                                {auth.isLoggedInAs(["ADMIN"]) && (
                                     <Link to="/addSal" state={sal} className="sal-edit">
                                         Edit
                                     </Link>
