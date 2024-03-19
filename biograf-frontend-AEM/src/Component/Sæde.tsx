@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getSæder } from '../services/apiFacade';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../security/AuthProvider';
-import './Sal.css';
+
 
 interface Sæde {
     id: number;

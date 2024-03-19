@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
+import './BestillingForm.css';
+
 
 const BestillingForm = () => {
   const [bestilling, setBestilling] = useState({
-    name: '',
+    navn: '',
     email: '',
-    // Add other fields as necessary
+    forestilling: null, // Add the chosen forestilling here
+    sæder: [], // Add the chosen sæder here
+    pristotal: 0, // Add the total price here
+    reservationstidspunkt: '', // Add the reservation time here
+    betalt: false, // Add the payment status here
   });
 
   const handleChange = (event) => {
@@ -24,30 +30,30 @@ const BestillingForm = () => {
       },
       body: JSON.stringify(bestilling),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        // Handle success - clear form, show success message, etc.
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        // Handle error - show error message, etc.
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          // Handle success - clear form, show success message, etc.
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          // Handle error - show error message, etc.
+        });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" name="name" value={bestilling.name} onChange={handleChange} />
-      </label>
-      <label>
-        Email:
-        <input type="email" name="email" value={bestilling.email} onChange={handleChange} />
-      </label>
-      {/* Add other fields as necessary */}
-      <button type="submit">Submit</button>
-    </form>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Navn:
+          <input type="text" name="navn" value={bestilling.navn} onChange={handleChange} />
+        </label>
+        <label>
+          Email:
+          <input type="email" name="email" value={bestilling.email} onChange={handleChange} />
+        </label>
+        {/* Add other fields as necessary */}
+        <button type="submit">Submit</button>
+      </form>
   );
 };
 

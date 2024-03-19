@@ -1,7 +1,46 @@
-/* Sal.css */
+.sal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    background-color: #000;
+    border-radius: 10px;
+}
+
+.sæde {
+    width: 50px;
+    height: 50px;
+    background-color: #ccc;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.sæde.valgt {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.sæde:not(.valgt):hover {
+    background-color: #eee;
+}
+
+.sæde::before {
+    content: "";
+    display: block;
+    position: relative;
+    top: 10px;
+    width: 100%;
+    height: 10px;
+    background-color: #666;
+    border-radius: 50%;
+}
 
 #app {
-    /* Add your styles for the app container if needed */
 }
 
 h1 {
@@ -61,36 +100,4 @@ li {
 
 .btnmargin {
     margin-top: 15px;
-}
-
-/* New styles added */
-
-/* Add your new styles here */
-
-.seat {
-    /* Add your styles for the seat button */
-}
-
-.seat-reserved {
-    /* Add styles for reserved seats */
-}
-
-.seat-available {
-    /* Add styles for available seats */
-}
-
-.sæde-container {
-    /* Add container styles if needed */
-}
-
-.sæde-header {
-    /* Add header styles if needed */
-}
-
-.sæde-grid {
-    /* Add grid styles if needed */
-}
-
-.sæde-edit {
-    /* Add edit link styles if needed */
 }

@@ -1,74 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { getSal } from '../services/apiFacade';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../security/AuthProvider';
-import './Sal.css'; // Update CSS import if needed
+import React, { useState } from 'react';
+import './Sal.css';
 
-interface Sal {
-    id: number;
-    name: string;
-    seats: Seat[];
+interface SalProps {
+    sæder?: string[]; // Gør sæder prop valgfri
 }
 
-interface Seat {
-    id: number;
-    row: number;
-    seatNumber: number;
-    type: string;
-    price: number;
-    occupied: boolean;
-}
+const Sal: React.FC<SalProps> = ({ sæder = [] }) => { // Sætter default værdi for sæder til tom array
+    const [valgteSæder, setValgteSæder] = useState<string[]>([]);
 
-const Seat: React.FC<Seat & { onSeatClick: (id: number) => void }> = ({ id, row, seatNumber, type, occupied, onSeatClick }) => {
-    const statusClass = occupied ? 'seat-reserved' : 'seat-available';
-
-    return (
-        <button className={`seat ${statusClass}`} onClick={() => onSeatClick(id)} disabled={occupied}>
-            {row}-{seatNumber}
-        </button>
-    );
-};
-
-export const Sal: React.FC = () => {
-    const [saler, setSaler] = useState<Sal[]>([]); // Assuming you're fetching an array of sal entities
-    const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
-    const auth = useAuth();
-
-    useEffect(() => {
-        getSaler().then((res) => {
-            console.log(res); // Log the fetched data
-            setSaler(res);
-        });
-    }, []);
-
-    const handleSeatClick = (id: number) => {
-        // Handle seat click logic here
+    const toggleSæde = (sæde: string) => {
+        const erValgt = valgteSæder.includes(sæde);
+        setValgteSæder(erValgt ? valgteSæder.filter(s => s !== sæde) : [...valgteSæder, sæde]);
     };
 
     return (
-        <div className="sal-container">
-            <h2 className="sal-header">Saler</h2>
-            <p>Se saler.</p>
-
-            <div className="sal-grid">
-                {saler.map((sal) => (
-                    <div key={sal.id}>
-                        <h3>{sal.name}</h3>
-                        <div className="seat-row">
-                            {sal.seats.map((seat) => (
-                                <Seat key={seat.id} {...seat} onSeatClick={handleSeatClick} />
-                            ))}
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-            {auth.isLoggedInAs(['ADMIN', 'USER']) && (
-                <Link to="/addSal" className="sal-edit">
-                    Edit
-                </Link>
-            )}
+        <div className="sal">
+            {sæder.map((sæde, index) => (
+                <div
+                    key={index}
+                    className={`sæde ${valgteSæder.includes(sæde) ? 'valgt' : ''}`}
+                    onClick={() => toggleSæde(sæde)}
+                >
+                    {sæde}
+                </div>
+            ))}
         </div>
     );
 };
+
+export default Sal;
 
