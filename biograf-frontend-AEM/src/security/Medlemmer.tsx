@@ -34,11 +34,11 @@ const Medlemmer: React.FC = () => {
             <Link to={`/${item.id}`} className="medlemmer-link">
               {item.id} - {item.username}
             </Link>
-            {auth.isLoggedInAs(["ADMIN"]) && (
-              <Link to="/addMedlem" state={item} className="medlemmer-edit">
+            {/* {auth.isLoggedInAs(["ADMIN"]) && (
+              <Link to="/opret" state={item} className="medlemmer-edit">
                 Edit
               </Link>
-            )}
+            )} */}
           </li>
         ))}
       </ul>
