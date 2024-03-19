@@ -3,7 +3,6 @@ import Biograf from "./Component/Biograf";
 import { Film } from "./Component/Film";
 import { Forestilling } from "./Component/Forestilling";
 import { Sal } from "./Component/Sal";
-import { Sæde } from "./Component/Sæde";
 import OmOs from "./Component/OmOs";
 
 import Medlemmer from "./security/Medlemmer";
@@ -22,6 +21,7 @@ import RequireAuth from "./security/RequireAuth";
 import Layout from "./Layout";
 import Home from "./Home";
 import "./App.css";
+import Sæder from "./Component/Sæder";
 
 export default function App() {
   return (
@@ -37,15 +37,9 @@ export default function App() {
 
         <Route path="/omOs" element={<OmOs />} />
 
+        <Route path="/saeder/forestilling/:id" element={<Sæder />} />
+
         <Route path="/sal" element={<Sal />} />
-        <Route
-          path="/sæde"
-          element={
-            <RequireAuth roles={["ADMIN"]}>
-              <Sæde />
-            </RequireAuth>
-          }
-        />
 
         <Route
           path="/medlemmer"

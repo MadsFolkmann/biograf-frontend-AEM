@@ -69,6 +69,17 @@ interface Sæde {
   optaget: boolean;
 }
 
+interface Bestilling {
+  id: number;
+  navn: string;
+  email: string;
+  forestilling: Array<Forestilling>;
+  sæder: Array<Sæde>;
+  pristotal: number;
+  reservationstidspunkt: string;
+  betalt: boolean;
+}
+
 interface Info {
   reference: string;
   created: string;
@@ -292,7 +303,7 @@ async function deleteSæde(id: number): Promise<void> {
   return fetch(`${SÆDE_URL}/${id}`, options).then(handleHttpErrors);
 }
 
-export type { Biograf, Film, Forestilling, Sal, Sæde, Info, Medlemmer };
+export type { Biograf, Film, Forestilling, Sal, Sæde, Info, Medlemmer, Bestilling };
 
 export { SalType };
 export { deleteBiograf, deleteFilm, deleteForestilling, deleteSal, deleteSæde };
