@@ -1,0 +1,26 @@
+.om-os-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.biografer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.biograf {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.biograf h3 {
+  margin-top: 0;
+}
+
+.biograf p {
+  margin: 10px 0;
+}

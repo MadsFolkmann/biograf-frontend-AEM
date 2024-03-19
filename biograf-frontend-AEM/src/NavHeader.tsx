@@ -23,6 +23,10 @@ export default function NavHeader() {
           <InfoDropdownMenu />
         </li>
 
+        <li>
+          <NavLink to="/omOs">Om os</NavLink>
+        </li>
+
         {auth.isLoggedIn() && auth.isLoggedInAs(["ADMIN"]) && <AddDropdownMenu />}
         <AuthStatus />
       </ul>

@@ -4,6 +4,7 @@ import { Film } from "./Component/Film";
 import { Forestilling } from "./Component/Forestilling";
 import { Sal } from "./Component/Sal";
 import { Sæde } from "./Component/Sæde";
+import OmOs from "./Component/OmOs";
 
 import FilmById from "./Component/FilmById";
 import BiografList from "./List/BiografList";
@@ -32,14 +33,9 @@ export default function App() {
         <Route path="/film/:id" element={<FilmById />} />
         <Route path="/forestilling" element={<Forestilling />} />
 
-        <Route
-          path="/sal"
-          element={
-            <RequireAuth roles={["ADMIN"]}>
-              <Sal />
-            </RequireAuth>
-          }
-        />
+        <Route path="/omOs" element={<OmOs />} />
+
+        <Route path="/sal" element={<Sal />} />
         <Route
           path="/sæde"
           element={
