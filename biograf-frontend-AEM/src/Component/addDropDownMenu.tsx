@@ -13,6 +13,8 @@ const AddDropdownMenu = () => {
         <NavLink to="/addBiograf">Tilføj Biograf</NavLink>
         <NavLink to="/addFilm">Tilføj Film</NavLink>
         <NavLink to="/addForestilling">Tilføj Forestilling</NavLink>
+        <NavLink to="/addSal">Tilføj Sal</NavLink>
+        <NavLink to="/addSæde">Tilføj Sæde</NavLink>
       </div>
     </li>
   );
