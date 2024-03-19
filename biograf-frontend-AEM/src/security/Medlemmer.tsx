@@ -3,34 +3,42 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../security/AuthProvider";
 import { getMedlemmer } from "../services/apiFacade";
 
-interface Medlem {
+interface Medlemmer {
   id: number;
-  navn: string;
+  username: string;
+  email: string;
+  password: string;
+  enabled: boolean;
+  created: string;
 }
 
-const MedlemmerListe = () => {
-  const [medlemmer, setMedlemmer] = useState<Medlem[]>([]);
+const Medlemmer: React.FC = () => {
+  const [medlemmer, setMedlemmer] = useState<Medlemmer[]>([]);
+  const auth = useAuth();
 
   useEffect(() => {
-    fetchMedlemmer();
+    getMedlemmer().then((res) => {
+      console.log("Medlemmer data:", res); // Log dataene her
+      setMedlemmer(res);
+    });
   }, []);
 
-  const fetchMedlemmer = async () => {
-    try {
-      const data = await getMedlemmer();
-      setMedlemmer(data);
-    } catch (error) {
-      console.error("Error fetching medlemmer:", error);
-    }
-  };
-
   return (
-    <div>
-      <h1>Medlemmer</h1>
-      <ul>
-        {medlemmer.map((medlem) => (
-          <li key={medlem.id}>
-            <Link to={`/medlem/${medlem.id}`}>{medlem.navn}</Link>
+    <div className="medlemmer-container">
+      <h2 className="medlemmer-header">Medlemmer</h2>
+      <p>Se medlemmer.</p>
+
+      <ul className="medlemmer-list">
+        {medlemmer.map((item, index) => (
+          <li key={index} className="medlemmer-item">
+            <Link to={`/${item.id}`} className="medlemmer-link">
+              {item.id} - {item.username}
+            </Link>
+            {auth.isLoggedInAs(["ADMIN"]) && (
+              <Link to="/addMedlem" state={item} className="medlemmer-edit">
+                Edit
+              </Link>
+            )}
           </li>
         ))}
       </ul>
@@ -38,4 +46,4 @@ const MedlemmerListe = () => {
   );
 };
 
-export default MedlemmerListe;
+export default Medlemmer;

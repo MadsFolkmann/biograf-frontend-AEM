@@ -7,7 +7,7 @@ const FORESTILLING_URL = API_URL + "/forestilling";
 const SAL_URL = API_URL + "/sal";
 const SÆDE_URL = API_URL + "/sæder";
 const INFO_URL = API_URL + "/info";
-const MEDLEMMER_URL = API_URL + "/specialusers";
+const MEDLEMMER_URL = API_URL + "/api/specialusers";
 
 interface Biograf {
   id: number;
@@ -47,11 +47,11 @@ interface Sal {
 
 interface Medlemmer {
   id: number;
-  firstName: string;
-  lastName: string;
-  address: string;
-  city: string;
-  zipCode: string;
+  username: string;
+  email: string;
+  password: string;
+  enabled: boolean;
+  created: string;
 }
 
 enum SalType {
