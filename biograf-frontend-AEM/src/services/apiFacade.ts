@@ -219,18 +219,15 @@ async function addFilm(newFilm: Film): Promise<Film> {
 }
 
 async function addForestilling(newForestilling: Forestilling): Promise<Forestilling> {
-  const options = makeOptions("POST", newForestilling, true);
-  return fetch(FORESTILLING_URL, options).then(handleHttpErrors);
+  const method = newForestilling.id ? "PUT" : "POST";
+  const options = makeOptions(method, newForestilling, true);
+  const URL = newForestilling.id ? `${FORESTILLING_URL}/${newForestilling.id}` : FORESTILLING_URL;
+  return fetch(URL, options).then(handleHttpErrors);
 }
 
 async function addSal(newSal: Sal): Promise<Sal> {
   const options = makeOptions("POST", newSal, true);
   return fetch(SAL_URL, options).then(handleHttpErrors);
-}
-
-async function addSæde(newSæde: Sæde): Promise<Sæde> {
-  const options = makeOptions("POST", newSæde, true);
-  return fetch(SÆDE_URL, options).then(handleHttpErrors);
 }
 
 /////////////////// DELETE ROUTES ///////////////////
@@ -263,7 +260,7 @@ export type { Biograf, Film, Forestilling, Sal, Sæde, Info };
 
 export { SalType }
 export { deleteBiograf, deleteFilm, deleteForestilling, deleteSal, deleteSæde };
-export { addBiograf, addFilm, addForestilling, addSal, addSæde };
+export { addBiograf, addFilm, addForestilling, addSal };
 export {
     getBiografer,
     getBiograf,

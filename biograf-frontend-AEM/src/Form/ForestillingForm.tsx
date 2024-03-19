@@ -25,7 +25,14 @@ useEffect(() => {
     getForestillinger().then((res) => setForestillinger(res));
     getFilms().then((res) => setFilm(res));
     getBiografer().then((res) => setBiograf(res));
-  }, []);
+}, []);
+    
+    //Fylder sal-dropdown med salene fra den valgte biograf
+      useEffect(() => {
+          if (formData.biograf) {
+              getBiografsale(Number(formData.biograf.id)).then((res) => setSal(res));
+          }
+      }, [formData.biograf]);
   
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +48,7 @@ useEffect(() => {
   };
 
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+      e.preventDefault();
     if (formData.id) {
       deleteForestilling(Number(formData.id));
       setFormData({ ...EMPTY_FORESTILLING });
@@ -49,14 +56,16 @@ useEffect(() => {
   };
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+      e.preventDefault();
+      console.log("formData", formData);
+      
     try {
-              const modifiedData = {
-                  ...formData,
-                  film: { id: Number(formData.film) },
-                  biograf: { id: Number(formData.biograf) },
-                sal: { id: Number(formData.sal) },
-              };
+    const modifiedData = {
+        ...formData,
+        film: { id: Number(formData.film) },
+        biograf: typeof formData.biograf === "object" ? { id: Number(formData.biograf.id) } : { id: Number(formData.biograf) },
+        sal: typeof formData.sal === "object" ? { id: Number(formData.sal.id) } : { id: Number(formData.sal) },
+    };
       const newForestilling = await addForestilling(modifiedData);
       alert("New forestilling added");
       console.info("New/Edited Forestilling", newForestilling);
@@ -70,6 +79,10 @@ useEffect(() => {
       <>
           <h2>Forestilling Add/Edit/Delete</h2>
           <form id="forestillingForm">
+              <div className="form-group">
+                  <label htmlFor="id">ID:</label>
+                  <input type="text" id="name" name="name" disabled value={formData.id || ""} />
+              </div>
               <div className="form-group">
                   <label htmlFor="film">Film:</label>
                   <select id="film" name="film" value={formData.film?.id} onChange={handleChange} required>
@@ -95,7 +108,7 @@ useEffect(() => {
               </div>
               <div className="form-group">
                   <label htmlFor="sal">Sal:</label>
-          <select id="sal" name="sal" value={formData.sal?.id} onChange={handleChange} required>
+                  <select id="sal" name="sal" value={formData.sal?.id} onChange={handleChange} required>
                       <option value="">Select Sal</option>
                       {sal.map((sal) => (
                           <option key={sal.id} value={sal.id}>
