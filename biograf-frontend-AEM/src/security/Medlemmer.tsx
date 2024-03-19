@@ -32,7 +32,7 @@ const Medlemmer: React.FC = () => {
         {medlemmer.map((item, index) => (
           <li key={index} className="medlemmer-item">
             <Link to={`/${item.id}`} className="medlemmer-link">
-              {item.id} - {item.username}
+              {item.username}
             </Link>
             {/* {auth.isLoggedInAs(["ADMIN"]) && (
               <Link to="/opret" state={item} className="medlemmer-edit">
