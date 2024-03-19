@@ -13,18 +13,20 @@ export default function NavHeader() {
     <nav>
       <ul>
         <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
-        <li>
-          <NavLink to="/biograf">Biografer</NavLink>
+          <NavLink to="/">Hjem</NavLink>
         </li>
         <li>
           <NavLink to="/film">Film</NavLink>
         </li>
         <li>
-          <NavLink to="/forestilling">Forestillinger</NavLink>
+          {" "}
+          <InfoDropdownMenu />
         </li>
-        {auth.isLoggedIn() && auth.isLoggedInAs(["ADMIN"]) && <InfoDropdownMenu />}
+
+        <li>
+          <NavLink to="/omOs">Om os</NavLink>
+        </li>
+
         {auth.isLoggedIn() && auth.isLoggedInAs(["ADMIN"]) && <AddDropdownMenu />}
         <AuthStatus />
       </ul>
