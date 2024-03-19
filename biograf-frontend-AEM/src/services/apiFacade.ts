@@ -209,13 +209,17 @@ async function getInfo(): Promise<Info> {
 
 /////////////////// POST ROUTES ///////////////////
 async function addBiograf(newBiograf: Biograf): Promise<Biograf> {
-  const options = makeOptions("POST", newBiograf, true);
-  return fetch(BIOGRAF_URL, options).then(handleHttpErrors);
+  const method = newBiograf.id ? "PUT" : "POST";
+  const options = makeOptions(method, newBiograf, true);
+  const URL = newBiograf.id ? `${BIOGRAF_URL}/${newBiograf.id}` : BIOGRAF_URL;
+  return fetch(URL, options).then(handleHttpErrors);
 }
 
 async function addFilm(newFilm: Film): Promise<Film> {
-  const options = makeOptions("POST", newFilm, true);
-  return fetch(FILM_URL, options).then(handleHttpErrors);
+  const method = newFilm.id ? "PUT" : "POST";
+  const options = makeOptions(method, newFilm, true);
+  const URL = newFilm.id ? `${FILM_URL}/${newFilm.id}` : FILM_URL;
+  return fetch(URL, options).then(handleHttpErrors);
 }
 
 async function addForestilling(newForestilling: Forestilling): Promise<Forestilling> {
@@ -226,8 +230,10 @@ async function addForestilling(newForestilling: Forestilling): Promise<Forestill
 }
 
 async function addSal(newSal: Sal): Promise<Sal> {
-  const options = makeOptions("POST", newSal, true);
-  return fetch(SAL_URL, options).then(handleHttpErrors);
+  const method = newSal.id ? "PUT" : "POST";
+  const options = makeOptions(method, newSal, true);
+  const URL = newSal.id ? `${SAL_URL}/${newSal.id}` : SAL_URL;
+  return fetch(URL, options).then(handleHttpErrors);
 }
 
 /////////////////// DELETE ROUTES ///////////////////
