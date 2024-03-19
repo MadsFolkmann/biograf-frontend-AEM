@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getSaler } from '../services/apiFacade'; // Assuming you have a function named `getSaler` to fetch sal data
+import { getSal } from '../services/apiFacade';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../security/AuthProvider';
 import './Sal.css'; // Update CSS import if needed
