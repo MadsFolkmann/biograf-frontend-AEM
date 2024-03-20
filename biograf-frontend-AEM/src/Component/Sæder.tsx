@@ -28,25 +28,29 @@ export default function Sæder() {
  })}`;
     
     return (
-    <div className="App">
-        {forestilling.film?.billede && <img className="filmImage" src={forestilling.film.billede} alt={forestilling.film.titel} />}
-
-        <div className="infoBar">
-            <span>Sal: {forestilling.sal?.nummer}</span>
-            <span>Tidspunkt: {formattedTidspunkt}</span>
-            <span>Biograf: {forestilling.biograf?.navn}</span>
-            <span>Film: {forestilling.film?.titel}</span>
+        <div className="App">
+            {forestilling.film?.billede && <img className="filmImage" src={forestilling.film.billede} alt={forestilling.film.titel} />}
+            <div className="infoBar">
+                <span>Sal: {forestilling.sal?.nummer}</span>
+                <span>Tidspunkt: {formattedTidspunkt}</span>
+                <span>Biograf: {forestilling.biograf?.navn}</span>
+                <span>Film: {forestilling.film?.titel}</span>
+            </div>
+            <Cinema
+                forestilling={forestilling}
+                selectedSeats={selectedSeats}
+                onSelectedSeatsChange={(selectedSeats) => setSelectedSeats(selectedSeats)}
+            />
+            <p className="info">
+                You have selected <span className="count">{selectedSeats.length}</span> seats
+            </p>
+            <Link to="/bestilling" state={{ selectedSeats: selectedSeats, forestilling: forestilling }} className="videre-til-bestiling-button">
+                <button className="videre-til-bestiling-button" disabled={selectedSeats.length === 0}>
+                    Videre til bestilling
+                </button>
+            </Link>
         </div>
-        <Cinema
-            forestilling={forestilling}
-            selectedSeats={selectedSeats}
-            onSelectedSeatsChange={(selectedSeats) => setSelectedSeats(selectedSeats)}
-        />
-        <p className="info">
-            You have selected <span className="count">{selectedSeats.length}</span> seats
-        </p>
-    </div>
-);
+    );
 }
 
 

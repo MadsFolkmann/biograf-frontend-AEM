@@ -6,6 +6,7 @@ const FILM_URL = API_URL + "/film";
 const FORESTILLING_URL = API_URL + "/forestilling";
 const SAL_URL = API_URL + "/sal";
 const SÆDE_URL = API_URL + "/sæder";
+const BESTILLING_URL = API_URL + "/bestilling";
 const INFO_URL = API_URL + "/info";
 const MEDLEMMER_URL = API_URL + "/api/specialusers";
 
@@ -79,8 +80,8 @@ interface Bestilling {
     id: number;
     navn: string;
     email: string;
-    forestilling: Array<Forestilling>;
-    sæder: Array<Sæde>;
+    forestilling: Forestilling | null;
+    sæder: Array<Sæde> | null;
     pristotal: number;
     reservationstidspunkt: string;
     betalt: boolean;
@@ -283,6 +284,11 @@ async function addSal(newSal: Sal): Promise<Sal> {
     return fetch(URL, options).then(handleHttpErrors);
 }
 
+async function addBestilling(newBestilling: Bestilling): Promise<Bestilling> {
+    const options = makeOptions("POST", newBestilling, true);
+    return fetch(BESTILLING_URL, options).then(handleHttpErrors);
+}
+
 /////////////////// DELETE ROUTES ///////////////////
 async function deleteBiograf(id: number): Promise<void> {
     const options = makeOptions("DELETE", null, true);
@@ -313,7 +319,7 @@ export type { Biograf, Film, Forestilling, Sal, Sæde, Info, Medlemmer, Bestilli
 
 export { SalType };
 export { deleteBiograf, deleteFilm, deleteForestilling, deleteSal, deleteSæde };
-export { addBiograf, addFilm, addForestilling, addSal };
+export { addBiograf, addFilm, addForestilling, addSal, addBestilling};
 export {
     getBiografer,
     getBiograf,

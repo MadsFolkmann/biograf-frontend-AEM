@@ -14,6 +14,7 @@ import FilmForm from "./Form/FilmForm";
 import SalForm from "./Form/SalForm";
 import ForestillingForm from "./Form/ForestillingForm";
 import OpretForm from "./security/OpretForm";
+import BestillingForm from "./Form/BestillingForm";
 // import BiografLayout from "./Form/BiografLayout";
 import Login from "./security/Login";
 import Logout from "./security/Logout";
@@ -38,6 +39,8 @@ export default function App() {
         <Route path="/omOs" element={<OmOs />} />
 
         <Route path="/saeder/forestilling/:id" element={<Sæder />} />
+
+        <Route path="/bestilling" element={<BestillingForm />} />
 
         <Route path="/sal" element={<Sal />} />
 
