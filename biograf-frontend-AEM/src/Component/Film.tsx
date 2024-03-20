@@ -108,9 +108,9 @@ export const Film = () => {
         <label htmlFor="genre">Genre:</label>
         <select id="genre" value={selectedGenre} onChange={handleGenreChange}>
           <option value="All">All</option>
-          {film.map((item, index) => (
-            <option key={index} value={item.genre}>
-              {item.genre}
+          {Array.from(new Set(film.map((item) => item.genre))).map((genre, index) => (
+            <option key={index} value={genre}>
+              {genre}
             </option>
           ))}
         </select>
