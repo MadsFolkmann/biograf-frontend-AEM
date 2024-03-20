@@ -1,64 +1,137 @@
+/* Generelle stilarter til at matche Cinemaxx-temaet */
 .film-container {
-  width: 100%;
-  margin: 20px auto;
+  font-family: "Arial", sans-serif;
+  color: #333;
+  background-color: #f4f4f4;
   padding: 20px;
-  box-sizing: border-box;
 }
 
 .film-header {
-  text-align: center;
+  color: #d2232a;
+  font-size: 24px;
   margin-bottom: 20px;
 }
 
+.filter-dropdown,
+.search-container,
+.sort-dropdown {
+  margin-bottom: 20px;
+}
+
+/* Stil til dropdowns og knapper */
+.filter-dropdown select,
+.search-container input,
+.sort-dropdown select {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #d2232a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #a81d24;
+}
+
+/* Stilarter til film-listen */
 .film-list {
-  display: grid; /* Gør listen til en grid container */
-  grid-template-columns: repeat(3, 1fr); /* Opret tre lige store kolonner */
-  gap: 20px; /* Tilføj mellemrum mellem elementerne */
+  display: flex;
+  flex-wrap: wrap;
   list-style: none;
+  margin: 0;
   padding: 0;
 }
 
 .film-item {
-  background-color: #f9f9f9;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 10px;
   border-radius: 5px;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-}
-
-.film-item-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-}
-
-.film-item:hover {
-  background-color: #e9e9e9;
+  flex: 1 0 21%; /* Justerer dette for at kontrollere antal elementer per række */
 }
 
 .film-link {
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  color: #333;
-  display: flex; /* Tilføj denne for at gøre linket til en flex container */
-  align-items: center; /* Centrer indholdet lodret */
-}
-
-.film-edit {
-  color: #007bff;
-  cursor: pointer;
-  margin-left: auto; /* Flyt redigeringslinket til højre side */
-}
-
-.film-edit:hover {
-  text-decoration: underline;
+  color: inherit;
 }
 
 .film-image {
   width: 100px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 5px;
+  height: auto;
   margin-right: 20px;
+  border-radius: 5px;
+}
+
+.film-item-content {
+  display: flex;
+  align-items: center;
+}
+
+.film-edit {
+  background-color: #f4f4f4;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
+
+.film-edit:hover {
+  background-color: #e2e2e2;
+}
+
+/*
+Animationer*/
+/* Hover-effekt for film-items */
+.film-item {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.film-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Glat overgang for input og select elementer */
+input,
+select {
+  transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #d2232a;
+  box-shadow: 0 0 8px rgba(210, 35, 42, 0.2);
+}
+
+/* Animation for film-billeder */
+.film-image {
+  transition: transform 0.3s ease;
+}
+
+.film-item:hover .film-image {
+  transform: scale(1.1);
+}
+
+/* Button hover effect for extra interactivity */
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.film-edit:hover {
+  background-color: #d2232a;
+  color: white;
 }

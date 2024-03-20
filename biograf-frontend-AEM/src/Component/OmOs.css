@@ -1,13 +1,31 @@
 .om-os-container {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-family: "Arial", sans-serif;
+}
+
+.om-os-container h2 {
+  color: #333;
+  text-align: center;
+  font-size: 28px;
+}
+
+.om-os-container p {
+  font-size: 16px;
+  color: #666;
+  text-align: justify;
+  padding: 0 20px;
 }
 
 .biografer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
+  padding: 20px;
 }
 
 .biograf {
@@ -15,12 +33,21 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.biograf:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .biograf h3 {
-  margin-top: 0;
+  color: #d2232a;
+  margin: 0 0 10px 0;
 }
 
 .biograf p {
-  margin: 10px 0;
+  font-size: 14px;
+  color: #555;
+  margin: 5px 0;
 }

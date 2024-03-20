@@ -1,3 +1,5 @@
+//Inspiration: https://codesandbox.io/p/sandbox/movie-seat-booking-xcmdj?file=%2Fsrc%2FApp.js%3A2%2C2-2%2C21
+
 import clsx from "clsx";
 import './Cinema.css';
 

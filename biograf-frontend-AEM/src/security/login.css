@@ -60,8 +60,12 @@
 }
 
 .login-logo-form {
-  width: 100px;
+  width: 110px;
   margin: 0 auto;
   display: block;
   margin-bottom: 20px;
+}
+
+.error-msg {
+  color: red;
 }

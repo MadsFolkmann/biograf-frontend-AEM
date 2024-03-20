@@ -1,72 +1,98 @@
 .film-detail-container {
-    margin: 20px;
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-radius: 8px;
 }
 
 .film-detail-top {
-    display: flex;
-    margin-bottom: 20px;
+  display: flex;
+  margin-bottom: 20px;
 }
 
 .film-detail-image {
-    width: 200px;
-    height: auto;
-    margin-right: 20px;
+  width: 300px;
+  height: auto;
+  margin-right: 20px;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.film-detail-image:hover {
+  transform: scale(1.05);
 }
 
 .film-detail-content {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 
 .film-detail-title {
-    font-size: 24px;
-    margin-bottom: 10px;
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #d2232a;
 }
 
 .film-detail-description,
 .film-detail-duration,
 .film-detail-genre,
-.film-detail-language {
-    font-size: 16px;
-    margin-bottom: 10px;
+.film-detail-language,
+.film-detail-3d {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #333;
 }
 
 .film-detail-forestillinger {
-    margin-top: 20px;
+  margin-top: 20px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
 }
 
 .film-detail-forestillinger h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #333;
 }
 
 .film-detail-forestillinger ul {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 .film-detail-forestillinger li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    font-size: 14px;
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.film-detail-forestillinger li:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .film-detail-forestillinger li h4,
 .film-detail-forestillinger li p {
-    margin: 0;
+  margin: 0;
 }
 
 .bestil-billet-button {
-    margin-top: 0;
-    padding: 5px 10px;
-    font-size: 12px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
+  background-color: #00a2ff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Tilføj en let skygge */
+}
+
+.bestil-billet-button:hover {
+  background-color: #00ff08;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4); /* Øg skyggeeffekten ved hover */
 }

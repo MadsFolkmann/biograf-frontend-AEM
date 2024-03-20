@@ -6,6 +6,8 @@ import InfoDropdownMenu from "./Component/InfoDropdownMenu";
 
 import { useAuth } from "./security/AuthProvider";
 
+import "./NavHeader.css";
+
 export default function NavHeader() {
   const auth = useAuth();
 
@@ -18,16 +20,17 @@ export default function NavHeader() {
         <li>
           <NavLink to="/film">Film</NavLink>
         </li>
-        <li>
-          {" "}
-          <InfoDropdownMenu />
-        </li>
 
         <li>
           <NavLink to="/omOs">Om os</NavLink>
         </li>
 
-        {auth.isLoggedIn() && auth.isLoggedInAs(["ADMIN"]) && <AddDropdownMenu />}
+        {auth.isLoggedIn() && auth.isLoggedInAs(["ADMIN"]) && (
+          <>
+            <AddDropdownMenu />
+            <InfoDropdownMenu />
+          </>
+        )}
         <AuthStatus />
       </ul>
     </nav>
