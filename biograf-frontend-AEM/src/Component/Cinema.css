@@ -1,0 +1,36 @@
+.Cinema {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.screen {
+  width: 80%;
+  height: 20px;
+  background: #000;
+  margin-bottom: 20px;
+}
+
+.seats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.seat {
+  width: 20px;
+  height: 20px;
+  background: #ccc;
+  cursor: pointer;
+}
+
+.seat.selected {
+  background: #0f0;
+}
+
+.seat.occupied {
+  background: #f00;
+  cursor: not-allowed;
+}
+
