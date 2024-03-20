@@ -41,9 +41,17 @@ export default function Sæder() {
                 selectedSeats={selectedSeats}
                 onSelectedSeatsChange={(selectedSeats) => setSelectedSeats(selectedSeats)}
             />
-            <p className="info">
-                You have selected <span className="count">{selectedSeats.length}</span> seats
-            </p>
+            <div className="info">
+                <p className="selected-info">
+                    You have selected <span className="count">{selectedSeats.length}</span> seats
+                </p>
+                {selectedSeats.map((sæde, index) => (
+                    <div key={index} className="selectedSeat">
+                        Sæde type: <span>{sæde.sædeType}</span>, Sæde nummer: <span>{sæde.sædeNummer}</span>, Række: <span>{sæde.række}</span>, Pris:{" "}
+                        <span>{sæde.pris}</span>
+                    </div>
+                ))}
+            </div>
             <Link to="/bestilling" state={{ selectedSeats: selectedSeats, forestilling: forestilling }} className="videre-til-bestiling-button">
                 <button className="videre-til-bestiling-button" disabled={selectedSeats.length === 0}>
                     Videre til bestilling

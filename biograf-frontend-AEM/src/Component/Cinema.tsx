@@ -24,8 +24,9 @@ export default function Cinema({ forestilling, selectedSeats, onSelectedSeatsCha
                     }
                     rows[sæde.række].push(sæde);
                     return rows;
-                }, {})
-            ).map((row, index) => (
+                }, {}))
+                .map((row: any)=> row.sort((a, b) => a.sædeNummer - b.sædeNummer))
+                .map((row, index) => (
                 <div key={index} className="row">
                     {row.map((sæde) => {
                         const isSelected = selectedSeats.some((selectedSeat) => selectedSeat.id === sæde.id);

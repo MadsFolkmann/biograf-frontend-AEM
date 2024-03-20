@@ -24,17 +24,24 @@ input {
     border-radius: 4px;
 }
 
-button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
+
+.prisBesked {
+    font-size: 0.5em;
+}
+
+/* Add the new CSS rules here */
+
+.bekræft-button {
+    padding: 10px 20px;
+    font-size: 1.2em;
     color: #fff;
+    background-color: #646cff;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
 }
 
-button:disabled {
-    background-color: #ccc;
+.bekræft-button:disabled {
+    background-color: #646cff28;
     cursor: not-allowed;
 }

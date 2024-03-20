@@ -289,7 +289,7 @@ async function addSal(newSal: Sal): Promise<Sal> {
 }
 
 async function addBestilling(newBestilling: Bestilling): Promise<Bestilling> {
-    const options = makeOptions("POST", newBestilling, true);
+    const options = makeOptions("POST", newBestilling, false);
     return fetch(BESTILLING_URL, options).then(handleHttpErrors);
 }
 

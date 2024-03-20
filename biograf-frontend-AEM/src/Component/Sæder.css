@@ -30,8 +30,7 @@
     margin-bottom: 20px;
 }
 
-.videre-til-bestiling-button {
-    margin-top: 20px;
+.videre-til-bestiling-button button {
     padding: 10px 20px;
     font-size: 1.2em;
     color: #fff;
@@ -42,6 +41,31 @@
 }
 
 .videre-til-bestiling-button:disabled {
-    background-color: #777;
+    background-color: #646cff28;
     cursor: not-allowed;
+}
+
+.selectedSeat {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+    background-color: #646cff;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    font-size: 0.8em;
+}
+
+.selectedSeat span {
+    font-weight: bold;
+}
+
+.selected-info{
+    text-align: center;
+}
+
+.info .count {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #646cff;
 }
