@@ -8,8 +8,8 @@ const InfoDropdownMenu = () => {
     <div className="dropdown">
       <div className="dropbtn">Info</div>
       <div className="dropdown-content">
-        <NavLink to="/biograf">Biografer</NavLink>
-        <NavLink to="/forestilling">Forestillinger</NavLink>
+        {/* <NavLink to="/biograf">Biografer</NavLink>
+        <NavLink to="/forestilling">Forestillinger</NavLink> */}
         <NavLink to="/sal">Sal Oversigt</NavLink>
         <NavLink to="/medlemmer">Medlems oversigt</NavLink>
       </div>

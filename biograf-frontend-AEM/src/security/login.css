@@ -65,3 +65,7 @@
   display: block;
   margin-bottom: 20px;
 }
+
+.error-msg {
+  color: red;
+}

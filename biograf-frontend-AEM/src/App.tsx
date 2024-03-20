@@ -1,4 +1,6 @@
 import { Routes, Route } from "react-router-dom";
+import React from "react";
+
 import Biograf from "./Component/Biograf";
 import { Film } from "./Component/Film";
 import { Forestilling } from "./Component/Forestilling";
