@@ -12,16 +12,25 @@ function handleSelectedState(seatNumber, rowNumber) {
         onSelectedSeatsChange([...selectedSeats, seat]);
     }
 }
-
-    return (
-        <div className="Cinema">
-            <div className="screen" />
-            <div className="seats">
-                {forestilling.sæder.map((sæde) => {
-                    const isSelected = selectedSeats.some((selectedSeat) => selectedSeat.seatNumber === sæde.sædeNummer && selectedSeat.rowNumber === sæde.række);
+return (
+    <div className="Cinema">
+        <div className="screen" />
+        {Object.values(
+            forestilling.sæder.reduce((rows, sæde) => {
+                if (!rows[sæde.række]) {
+                    rows[sæde.række] = [];
+                }
+                rows[sæde.række].push(sæde);
+                return rows;
+            }, {})
+        ).map((row, index) => (
+            <div key={index} className="row">
+                {row.map((sæde) => {
+                    const isSelected = selectedSeats.some(
+                        (selectedSeat) => selectedSeat.seatNumber === sæde.sædeNummer && selectedSeat.rowNumber === sæde.række
+                    );
                     const isOccupied = sæde.optaget;
-                    console.log(isSelected);
-                    
+
                     return (
                         <span
                             key={`${sæde.sædeNummer}-${sæde.række}`}
@@ -31,6 +40,7 @@ function handleSelectedState(seatNumber, rowNumber) {
                     );
                 })}
             </div>
-        </div>
-    );
+        ))}
+    </div>
+);
 }

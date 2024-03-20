@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getForestilling, Forestilling } from "../services/apiFacade";
 import Cinema from "./Cinema";
+import './Sæder.css';
 
 
 export default function Sæder() {
@@ -19,23 +20,33 @@ export default function Sæder() {
 
     console.log("forestilling", forestilling);
     console.log(selectedSeats);
+
+ const tidspunkt = new Date(forestilling?.tidspunkt);
+ const formattedTidspunkt = `${tidspunkt.toLocaleDateString("da-DK")} kl. ${tidspunkt.toLocaleTimeString("da-DK", {
+     hour: "2-digit",
+     minute: "2-digit",
+ })}`;
     
     return (
-        <div className="App">
-          <h3>Sal: {forestilling.sal?.nummer}</h3>
-          <h4>Tidspunkt: {forestilling?.tidspunkt}</h4>
-          <h4>Biograf: {forestilling.biograf?.navn}</h4>
-          <h4>Film: {forestilling.film?.titel}</h4>
-          <Cinema
+    <div className="App">
+        {forestilling.film?.billede && <img className="filmImage" src={forestilling.film.billede} alt={forestilling.film.titel} />}
+
+        <div className="infoBar">
+            <span>Sal: {forestilling.sal?.nummer}</span>
+            <span>Tidspunkt: {formattedTidspunkt}</span>
+            <span>Biograf: {forestilling.biograf?.navn}</span>
+            <span>Film: {forestilling.film?.titel}</span>
+        </div>
+        <Cinema
             forestilling={forestilling}
             selectedSeats={selectedSeats}
-            onSelectedSeatsChange={selectedSeats => setSelectedSeats(selectedSeats)}
-          />
-          <p className="info">
+            onSelectedSeatsChange={(selectedSeats) => setSelectedSeats(selectedSeats)}
+        />
+        <p className="info">
             You have selected <span className="count">{selectedSeats.length}</span> seats
-          </p>
-        </div>
-    );
+        </p>
+    </div>
+);
 }
 
 
