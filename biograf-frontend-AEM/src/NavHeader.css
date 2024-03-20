@@ -1,0 +1,62 @@
+nav {
+  background-color: #333; /* Mørk baggrund for at skabe kontrast */
+  padding: 10px 20px; /* Lidt polstring rundt om elementerne */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Skygge for dybde */
+}
+
+nav ul {
+  list-style: none; /* Fjerner standard listestil */
+  display: flex; /* Horisontal layout */
+  justify-content: start; /* Starter fra venstre side */
+  align-items: center; /* Centrerer elementerne vertikalt */
+  padding: 0; /* Nulstiller polstring */
+}
+
+nav ul li {
+  margin-right: 20px; /* Afstand mellem elementerne */
+}
+
+nav ul li a {
+  color: white; /* Lys tekstfarve for kontrast */
+  text-decoration: none; /* Fjerner understregning */
+  font-size: 16px; /* Passende tekststørrelse */
+  transition: color 0.3s ease; /* Glat farveovergang ved hover */
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: #d2232a; /* Fremhæver linket ved hover eller når det er aktivt */
+}
+
+/* Tilpasser AuthStatus og dropdown-menuer for at matche designet */
+.AuthStatus,
+.addDropdownMenu,
+.infoDropdownMenu {
+  color: white;
+  margin-left: auto; /* Skubber elementerne til højre */
+  padding: 5px;
+  font-size: 14px;
+}
+
+.AuthStatus:hover,
+.addDropdownMenu:hover,
+.infoDropdownMenu:hover {
+  color: #d2232a; /* Fremhæver ved hover */
+}
+
+/* Specifik styling til dropdown-menuer, hvis det er nødvendigt */
+.addDropdownMenu ul,
+.infoDropdownMenu ul {
+  background-color: #444; /* Lysere baggrund for dropdowns */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.addDropdownMenu li,
+.infoDropdownMenu li {
+  padding: 5px 10px;
+}
+
+.addDropdownMenu li:hover,
+.infoDropdownMenu li:hover {
+  background-color: #555; /* Hover-effekt for dropdown-elementer */
+}

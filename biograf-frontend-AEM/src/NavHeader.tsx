@@ -6,6 +6,8 @@ import InfoDropdownMenu from "./Component/InfoDropdownMenu";
 
 import { useAuth } from "./security/AuthProvider";
 
+import "./NavHeader.css";
+
 export default function NavHeader() {
   const auth = useAuth();
 
