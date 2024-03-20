@@ -7,7 +7,7 @@ const FORESTILLING_URL = API_URL + "/forestilling";
 const SAL_URL = API_URL + "/sal";
 const SÆDE_URL = API_URL + "/sæder";
 const INFO_URL = API_URL + "/info";
-const MEDLEMMER_URL = API_URL + "/api/specialusers";
+const MEDLEMMER_URL = API_URL + "/api/user-with-role/all";
 
 interface Biograf {
   id: number;
@@ -237,6 +237,10 @@ async function getMedlemmer(): Promise<Array<Medlemmer>> {
   }
 }
 
+async function getMedlemmerId(id: number): Promise<Medlemmer> {
+  return fetch(`${MEDLEMMER_URL}/${id}`).then(handleHttpErrors);
+}
+
 /////////////////// POST ROUTES ///////////////////
 async function addBiograf(newBiograf: Biograf): Promise<Biograf> {
   const options = makeOptions("POST", newBiograf, true);
@@ -309,4 +313,5 @@ export {
   getForestillingerByFilmID,
   getBiografsale,
   getMedlemmer,
+  getMedlemmerId,
 };

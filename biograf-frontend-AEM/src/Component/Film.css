@@ -62,3 +62,26 @@
   border-radius: 5px;
   margin-right: 20px;
 }
+
+.sort-dropdown,
+.filter-dropdown {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.sort-dropdown label,
+.filter-dropdown label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.sort-dropdown select,
+.filter-dropdown select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
