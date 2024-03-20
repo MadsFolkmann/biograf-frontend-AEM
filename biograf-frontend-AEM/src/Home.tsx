@@ -19,7 +19,7 @@ export default function Home() {
       <p className="home-text">Uanset om du er til action, drama, romantik eller science fiction, er der noget for enhver smag her hos os.</p>
       <h3 className="home-subheader">Nogle af vores populære film:</h3>
       <div className="film-list">
-        {films.map((film, index) => (
+        {films.slice(0, 3).map((film, index) => (
           <div key={index} className="film-item">
             <img src={film.billede} alt={film.titel} className="film-image" />
             <p className="film-title">{film.titel}</p>
