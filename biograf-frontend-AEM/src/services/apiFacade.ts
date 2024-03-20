@@ -29,10 +29,10 @@ interface Film {
 
 interface Forestilling {
   id: number;
-  biograf: Biograf;
-  film: Film;
-  sal: Sal;
-  sæde: Array<Sæde>;
+  biograf: Biograf | null;
+  film: Film | null;
+  sal: Sal | null;
+  sæder: Array<Sæde>;
   tidspunkt: string;
 }
 
@@ -60,13 +60,30 @@ enum SalType {
   STOR = "STOR",
 }
 
+enum SædeType {
+  STANDARD = "STANDARD",
+  VIP = "VIP",
+  COWBOY = "COWBOY",
+}
+
 interface Sæde {
   id: number;
   række: number;
   sædeNummer: number;
-  sædeType: string;
+  sædeType: SædeType;
   pris: number;
   optaget: boolean;
+}
+
+interface Bestilling {
+  id: number;
+  navn: string;
+  email: string;
+  forestilling: Array<Forestilling>;
+  sæder: Array<Sæde>;
+  pristotal: number;
+  reservationstidspunkt: string;
+  betalt: boolean;
 }
 
 interface Info {
@@ -243,28 +260,31 @@ async function getMedlemmerId(id: number): Promise<Medlemmer> {
 
 /////////////////// POST ROUTES ///////////////////
 async function addBiograf(newBiograf: Biograf): Promise<Biograf> {
-  const options = makeOptions("POST", newBiograf, true);
-  return fetch(BIOGRAF_URL, options).then(handleHttpErrors);
+  const method = newBiograf.id ? "PUT" : "POST";
+  const options = makeOptions(method, newBiograf, true);
+  const URL = newBiograf.id ? `${BIOGRAF_URL}/${newBiograf.id}` : BIOGRAF_URL;
+  return fetch(URL, options).then(handleHttpErrors);
 }
 
 async function addFilm(newFilm: Film): Promise<Film> {
-  const options = makeOptions("POST", newFilm, true);
-  return fetch(FILM_URL, options).then(handleHttpErrors);
+  const method = newFilm.id ? "PUT" : "POST";
+  const options = makeOptions(method, newFilm, true);
+  const URL = newFilm.id ? `${FILM_URL}/${newFilm.id}` : FILM_URL;
+  return fetch(URL, options).then(handleHttpErrors);
 }
 
 async function addForestilling(newForestilling: Forestilling): Promise<Forestilling> {
-  const options = makeOptions("POST", newForestilling, true);
-  return fetch(FORESTILLING_URL, options).then(handleHttpErrors);
+  const method = newForestilling.id ? "PUT" : "POST";
+  const options = makeOptions(method, newForestilling, true);
+  const URL = newForestilling.id ? `${FORESTILLING_URL}/${newForestilling.id}` : FORESTILLING_URL;
+  return fetch(URL, options).then(handleHttpErrors);
 }
 
 async function addSal(newSal: Sal): Promise<Sal> {
-  const options = makeOptions("POST", newSal, true);
-  return fetch(SAL_URL, options).then(handleHttpErrors);
-}
-
-async function addSæde(newSæde: Sæde): Promise<Sæde> {
-  const options = makeOptions("POST", newSæde, true);
-  return fetch(SÆDE_URL, options).then(handleHttpErrors);
+  const method = newSal.id ? "PUT" : "POST";
+  const options = makeOptions(method, newSal, true);
+  const URL = newSal.id ? `${SAL_URL}/${newSal.id}` : SAL_URL;
+  return fetch(URL, options).then(handleHttpErrors);
 }
 
 /////////////////// DELETE ROUTES ///////////////////
@@ -293,11 +313,11 @@ async function deleteSæde(id: number): Promise<void> {
   return fetch(`${SÆDE_URL}/${id}`, options).then(handleHttpErrors);
 }
 
-export type { Biograf, Film, Forestilling, Sal, Sæde, Info, Medlemmer };
+export type { Biograf, Film, Forestilling, Sal, Sæde, Info, Medlemmer, Bestilling };
 
 export { SalType };
 export { deleteBiograf, deleteFilm, deleteForestilling, deleteSal, deleteSæde };
-export { addBiograf, addFilm, addForestilling, addSal, addSæde };
+export { addBiograf, addFilm, addForestilling, addSal };
 export {
   getBiografer,
   getBiograf,
@@ -313,5 +333,4 @@ export {
   getForestillingerByFilmID,
   getBiografsale,
   getMedlemmer,
-  getMedlemmerId,
 };

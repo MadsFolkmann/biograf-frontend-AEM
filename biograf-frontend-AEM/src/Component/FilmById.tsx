@@ -1,5 +1,5 @@
 import  { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { getForestillingerByFilmID, Forestilling ,getSpecificFilm, Film as ApiFilm } from "../services/apiFacade";
 import "./FilmById.css";
 
@@ -51,9 +51,11 @@ return (
                         <h4>Biograf: {f.biograf?.navn}</h4>
                         <p>Tidspunkt: {f.tidspunkt}</p>
                         <p>Sal: {f.sal?.nummer}</p>
-                        <button type="button" className="bestil-billet-button">
-                            Bestil billet
-                        </button>
+                        <Link to={`/saeder/forestilling/${f.id}`} className="bestil-billet-button">
+                            <button type="button" className="bestil-billet-button">
+                                Bestil billet
+                            </button>
+                        </Link>{" "}
                     </li>
                 ))}
             </ul>
