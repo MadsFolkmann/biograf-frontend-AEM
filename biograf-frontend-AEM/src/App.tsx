@@ -10,14 +10,12 @@ import OmOs from "./Component/OmOs";
 import Medlemmer from "./security/Medlemmer";
 
 import FilmById from "./Component/FilmById";
-import BiografList from "./List/BiografList";
 import BiografForm from "./Form/BiografForm";
 import FilmForm from "./Form/FilmForm";
 import SalForm from "./Form/SalForm";
 import ForestillingForm from "./Form/ForestillingForm";
 import OpretForm from "./security/OpretForm";
 import BestillingForm from "./Form/BestillingForm";
-// import BiografLayout from "./Form/BiografLayout";
 import Login from "./security/Login";
 import Logout from "./security/Logout";
 import RequireAuth from "./security/RequireAuth";
