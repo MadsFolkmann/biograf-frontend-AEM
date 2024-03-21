@@ -135,3 +135,20 @@ button:hover {
   background-color: #d2232a;
   color: white;
 }
+
+.film-forestillinger-status {
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+}
+
+.forestilling-tilgaengelig {
+  background-color: #4caf50;
+}
+
+.ingen-forestilling {
+  background-color: #f44336;
+}

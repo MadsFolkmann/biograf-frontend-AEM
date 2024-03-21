@@ -80,6 +80,10 @@ export const Film = () => {
     (item) => (selectedGenre === "All" || item.genre === selectedGenre) && (selectedBiograf === "All" || item.biograf === selectedBiograf)
   );
 
+  const hasForestillinger = (filmId: number) => {
+    return forestillinger.some((forestilling) => forestilling.film?.id === filmId);
+  };
+
   const sortedFilm = filteredFilm.slice().sort((a, b) => {
     if (sortMethod === "alphabetic") {
       if (sortDirection === "ASC") {
@@ -147,8 +151,11 @@ export const Film = () => {
               <div className="film-item-content">
                 <img src={item.billede} alt={item.titel} className="film-image" />
                 <span>
-                  {item.id} - {item.titel} - Varighed: {item.varighed}
+                  {item.id} - {item.titel}
                 </span>
+                <p className={`film-forestillinger-status ${hasForestillinger(item.id) ? "forestilling-tilgaengelig" : "ingen-forestilling"}`}>
+                  {hasForestillinger(item.id) ? "Forestillinger tilgængelige" : "Ingen forestillinger planlagt"}
+                </p>
               </div>
             </Link>
             {auth.isLoggedInAs(["ADMIN"]) && (
