@@ -36,10 +36,6 @@ cd frontend-biograf-AEM
 npm run dev
 ```
 
-### Build Status (Production branch)
-
-[![Azure Static Web Apps CI/CD]
-
 ### Deployment
 
-The application is deployed to Azure Web App. You can access it [here]().
+The application is deployed to Azure Web App. You can access it [here](https://kind-cliff-0dab30103.4.azurestaticapps.net/).
