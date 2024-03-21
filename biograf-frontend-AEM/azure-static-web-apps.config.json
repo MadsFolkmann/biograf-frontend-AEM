@@ -1,5 +1,5 @@
 {
-    "mimeTypes": {
-        ".js": "application/javascript"
-    }
+  "mimeTypes": {
+    ".js": "application/javascript  mjs;"
+  }
 }
