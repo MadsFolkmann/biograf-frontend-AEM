@@ -14,7 +14,7 @@ For at køre projektet lokalt, skal du følge disse trin:
     ```
 
 2. Sørg for, at have backend'en kørende i baggrunden
-(https://github.com/MadsFolkmann/biograf-backend-AEM)
+Repository link: [https://github.com/MadsFolkmann/biograf-backend-AEM](https://github.com/MadsFolkmann/biograf-backend-AEM)
 
 3. Kør følgende kommandoer i terminalen for frontend:
 
