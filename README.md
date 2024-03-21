@@ -39,3 +39,5 @@ npm run dev
 ### Deployment
 
 The application is deployed to Azure Web App. You can access it [here](https://kind-cliff-0dab30103.4.azurestaticapps.net/).
+
+The deployed backend: https://biografaem.azurewebsites.net/
