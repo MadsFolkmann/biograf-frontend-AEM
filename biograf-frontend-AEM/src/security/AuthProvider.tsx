@@ -1,7 +1,7 @@
 import { createContext, useState, ReactNode } from "react";
-import { authProvider, User } from "../services/authFacade";
+import { authProvider, User } from "../services/AuthFacade";
 import { useContext } from "react";
-import { LoginResponse, LoginRequest } from "../services/authFacade";
+import { LoginResponse, LoginRequest } from "../services/AuthFacade";
 // import { SpecialUser } from "./specialUserProvider";
 // import { SpecialUserResponse } from "./specialUserProvider";
 import React from "react";
