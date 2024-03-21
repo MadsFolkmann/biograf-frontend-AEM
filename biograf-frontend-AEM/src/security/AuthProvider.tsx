@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { LoginResponse, LoginRequest } from "../services/authFacade";
 import { SpecialUser } from "./specialUserProvider";
 import { SpecialUserResponse } from "./specialUserProvider";
+import React from "react";
 
 interface AuthContextType {
   username: string | null;
@@ -38,6 +39,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem("username");
     localStorage.removeItem("roles");
   };
+
 
   function isLoggedIn() {
     return username != null;
