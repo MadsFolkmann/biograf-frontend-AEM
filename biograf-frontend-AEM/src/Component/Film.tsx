@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getFilms, getBiografer, getForestillinger } from "../services/apiFacade";
+import { getFilms, getBiografer, getForestillinger, Biograf } from "../services/apiFacade";
 import { Link } from "react-router-dom";
 import { useAuth } from "../security/AuthProvider";
 import "./Film.css";
@@ -140,7 +140,11 @@ export const Film = () => {
               <div className="film-item-content">
                 <img src={item.billede} alt={item.titel} className="film-image" />
                 <span>
-                  {item.id} - {item.titel} - {item.varighed} min - {item.er3D ? "3D" : "2D"}
+                  {item.id} - {item.titel} - {item.er3D ? "3D" : "2D"}
+                  <span
+                    className={`forestilling-indikator ${hasForestillingerInBiograf(item.id) ? "forestilling-tilgængelig" : "ingen-forestilling"}`}
+                    data-tooltip={hasForestillingerInBiograf(item.id) ? "Forestilling tilgængelige" : "Ingen forestilling tilgængelige"}
+                  ></span>{" "}
                 </span>
               </div>
             </Link>
