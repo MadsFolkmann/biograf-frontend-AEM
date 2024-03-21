@@ -13,7 +13,8 @@ For at køre projektet lokalt, skal du følge disse trin:
     git clone biograf-frontend-AEM
     ```
 
-2. Sørg for, at backend'en kører som forventet.
+2. Sørg for, at have backend'en kørende i baggrunden
+(https://github.com/MadsFolkmann/biograf-backend-AEM)
 
 3. Kør følgende kommandoer i terminalen for frontend:
 
