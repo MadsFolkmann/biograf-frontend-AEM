@@ -1,4 +1,4 @@
-# KINO Frontend
+# AEM Frontend
 
 This is a Typescript React VITE Cinema fullstack application
 
@@ -21,15 +21,13 @@ cd frontend-biograf-AEM
 npm install
 ```
 
-#### 3. Before starting the application, make sure the [backend](https://github.com/MadsFolkmann/biograf-backend-AEM) is running in the background.
-
-#### 4. Build the application
+#### 3. Build the application
 
 ```
 npm build
 ```
 
-#### 5. Start the application
+#### 4. Start the application
 
 ```
 cd frontend-biograf-AEM
