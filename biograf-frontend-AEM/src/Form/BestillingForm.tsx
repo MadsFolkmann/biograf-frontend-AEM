@@ -68,7 +68,7 @@ export default function BestillingForm() {
                 email: formData.email,
                 forestilling: forestilling,
                 sæder: selectedSeats,
-                pristotal: pristotal,
+                pristotal: pris,
                 reservationstidspunkt: new Date().toISOString(),
                 betalt: true,
             };
