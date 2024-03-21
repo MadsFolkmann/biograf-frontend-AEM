@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getFilms, getBiografer, Biograf, getForestillinger, Forestilling } from "../services/apiFacade";
+import { getFilms, getBiografer, getForestillinger } from "../services/apiFacade";
 import { Link } from "react-router-dom";
 import { useAuth } from "../security/AuthProvider";
 import "./Film.css";
@@ -16,49 +16,42 @@ interface Film {
   biograf: string;
 }
 
+interface Forestilling {
+  id: number;
+  film: Film;
+  biograf: { id: number; navn: string };
+  tidspunkt: string;
+}
+
 export const Film = () => {
   const [film, setFilm] = useState<Film[]>([]);
   const [biografer, setBiografer] = useState<Biograf[]>([]);
   const [forestillinger, setForestillinger] = useState<Forestilling[]>([]);
-
   const [sortMethod, setSortMethod] = useState<"alphabetic" | "duration">("alphabetic");
   const [sortDirection, setSortDirection] = useState<"ASC" | "DESC">("ASC");
   const [selectedGenre, setSelectedGenre] = useState<string>("All");
-  const [selectedBiograf, setSelectedBiograf] = useState<string>("All");
+  const [selectedBiografFilter, setSelectedBiografFilter] = useState<string>("All");
   const [searchInput, setSearchInput] = useState("");
-
   const auth = useAuth();
 
   useEffect(() => {
-    getFilms().then((res) => setFilm(res));
-    getBiografer().then((res) => setBiografer(res));
-    getForestillinger().then((res) => setForestillinger(res));
+    getFilms().then(setFilm);
+    getBiografer().then(setBiografer);
+    getForestillinger().then(setForestillinger);
   }, []);
 
+  const handleBiografFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedBiografFilter(e.target.value);
+  };
+
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    if (value === "alphabetic-asc") {
-      setSortMethod("alphabetic");
-      setSortDirection("ASC");
-    } else if (value === "alphabetic-desc") {
-      setSortMethod("alphabetic");
-      setSortDirection("DESC");
-    } else if (value === "duration-longest") {
-      setSortMethod("duration");
-      setSortDirection("DESC");
-    } else if (value === "duration-shortest") {
-      setSortMethod("duration");
-      setSortDirection("ASC");
-    }
+    const value = e.target.value.split("-");
+    setSortMethod(value[0] as "alphabetic" | "duration");
+    setSortDirection(value[1] as "ASC" | "DESC");
   };
 
   const handleGenreChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedGenre(e.target.value);
-  };
-
-  const handleBiografChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedBiografName = e.target.value;
-    setSelectedBiograf(selectedBiografName);
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,37 +66,33 @@ export const Film = () => {
 
   const handleResetSearch = () => {
     setSearchInput("");
-    getFilms().then((res) => setFilm(res));
+    getFilms().then(setFilm);
   };
-
-  const filteredFilm = film.filter(
-    (item) => (selectedGenre === "All" || item.genre === selectedGenre) && (selectedBiograf === "All" || item.biograf === selectedBiograf)
-  );
 
   const hasForestillinger = (filmId: number) => {
-    return forestillinger.some((forestilling) => forestilling.film?.id === filmId);
+    return forestillinger.some((forestilling) => forestilling.film.id === filmId);
   };
 
-  const sortedFilm = filteredFilm.slice().sort((a, b) => {
-    if (sortMethod === "alphabetic") {
-      if (sortDirection === "ASC") {
-        return a.titel.localeCompare(b.titel);
-      } else {
-        return b.titel.localeCompare(a.titel);
-      }
-    } else if (sortMethod === "duration") {
-      if (sortDirection === "ASC") {
-        return a.varighed - b.varighed;
-      } else {
-        return b.varighed - a.varighed;
-      }
+  const hasForestillingerInBiograf = (filmId: number) => {
+    if (selectedBiografFilter === "All") {
+      return hasForestillinger(filmId);
     }
-  });
+    return forestillinger.some((forestilling) => forestilling.film.id === filmId && forestilling.biograf.navn === selectedBiografFilter);
+  };
 
-  // Filtrer forestillinger baseret på den valgte biograf
-  const filteredForestillinger = forestillinger.filter(
-    (forestilling) => selectedBiograf === "All" || (forestilling.biograf && forestilling.biograf.navn === selectedBiograf)
-  );
+  const filteredAndSortedFilm = film
+    .filter(
+      (item) => (selectedGenre === "All" || item.genre === selectedGenre) && (selectedBiografFilter === "All" || hasForestillingerInBiograf(item.id))
+    )
+    .sort((a, b) => {
+      if (sortMethod === "alphabetic") {
+        return sortDirection === "ASC" ? a.titel.localeCompare(b.titel) : b.titel.localeCompare(a.titel);
+      }
+      if (sortMethod === "duration") {
+        return sortDirection === "ASC" ? a.varighed - b.varighed : b.varighed - a.varighed;
+      }
+      return 0;
+    });
 
   return (
     <div className="film-container">
@@ -120,12 +109,12 @@ export const Film = () => {
         </select>
       </div>
       <div className="filter-dropdown">
-        <label htmlFor="biograf">Biograf:</label>
-        <select id="biograf" value={selectedBiograf} onChange={handleBiografChange}>
-          <option value="All">All</option>
-          {filteredForestillinger.map((forestilling) => (
-            <option key={forestilling.biograf?.id} value={forestilling.biograf?.navn}>
-              {forestilling.biograf?.navn}
+        <label htmlFor="biograf-filter">Vælg Biograf:</label>
+        <select id="biograf-filter" value={selectedBiografFilter} onChange={handleBiografFilterChange}>
+          <option value="All">Alle Biografer</option>
+          {biografer.map((biograf) => (
+            <option key={biograf.id} value={biograf.navn}>
+              {biograf.navn}
             </option>
           ))}
         </select>
@@ -133,34 +122,31 @@ export const Film = () => {
       <div className="search-container">
         <input type="text" value={searchInput} onChange={handleSearchChange} placeholder="Søg film..." />
         <button onClick={handleSearch}>Søg</button>
-        <button onClick={handleResetSearch}>Tilbage</button>
+        <button onClick={handleResetSearch}>Nulstil</button>
       </div>
       <div className="sort-dropdown">
         <label htmlFor="sort">Sortering:</label>
-        <select id="sort" onChange={handleSortChange}>
-          <option value="alphabetic-asc">A-Z</option>
-          <option value="alphabetic-desc">Z-A</option>
-          <option value="duration-longest">Længst</option>
-          <option value="duration-shortest">Kortest</option>
+        <select id="sort" value={`${sortMethod}-${sortDirection}`} onChange={handleSortChange}>
+          <option value="alphabetic-ASC">A-Z</option>
+          <option value="alphabetic-DESC">Z-A</option>
+          <option value="duration-ASC">Kortest først</option>
+          <option value="duration-DESC">Længst først</option>
         </select>
       </div>
       <ul className="film-list">
-        {sortedFilm.map((item, index) => (
-          <li key={index} className="film-item">
+        {filteredAndSortedFilm.map((item, index) => (
+          <li key={index} className={`film-item ${!hasForestillingerInBiograf(item.id) ? "hidden" : ""}`}>
             <Link to={`/film/${item.id}`} className="film-link">
               <div className="film-item-content">
                 <img src={item.billede} alt={item.titel} className="film-image" />
                 <span>
-                  {item.id} - {item.titel}
+                  {item.id} - {item.titel} - {item.varighed} min - {item.er3D ? "3D" : "2D"}
                 </span>
-                <p className={`film-forestillinger-status ${hasForestillinger(item.id) ? "forestilling-tilgaengelig" : "ingen-forestilling"}`}>
-                  {hasForestillinger(item.id) ? "Forestillinger tilgængelige" : "Ingen forestillinger planlagt"}
-                </p>
               </div>
             </Link>
             {auth.isLoggedInAs(["ADMIN"]) && (
-              <Link to="/addFilm" state={item} className="film-edit">
-                Edit
+              <Link to={`/editFilm/${item.id}`} className="film-edit">
+                Rediger
               </Link>
             )}
           </li>
@@ -169,4 +155,3 @@ export const Film = () => {
     </div>
   );
 };
-``;
