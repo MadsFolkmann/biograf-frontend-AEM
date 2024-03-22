@@ -25,7 +25,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
         ...prevFormData,
-        [name]: name === "antalSale" ? parseInt(value, 10) : value,
+        [name]: name === "antalSale" ? parseInt(value, 10) : value,  
     }));
 };
 

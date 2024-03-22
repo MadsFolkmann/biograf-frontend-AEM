@@ -59,7 +59,8 @@ useEffect(() => {
       e.preventDefault();
       console.log("formData", formData);
       
-    try {
+      try {
+        // Ændrer formData til det format, som API'et forventer
         const modifiedData = {
             ...formData,
             film: { id: Number(formData.film) },

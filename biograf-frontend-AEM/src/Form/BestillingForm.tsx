@@ -73,7 +73,8 @@ export default function BestillingForm() {
                 betalt: true,
             };
             const addedBestilling = await addBestilling(newBestilling);
-            if (addedBestilling) {
+            // Hvis bestillingen er gennemført, vises en toast besked og brugeren sendes til forsiden
+            if (addedBestilling) { 
                 toast.success("Bestillingen er gennemført");
                 setTimeout(() => {
                     navigate("/");

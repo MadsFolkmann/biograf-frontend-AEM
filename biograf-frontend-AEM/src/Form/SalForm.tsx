@@ -54,7 +54,7 @@ const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     
     const biografSale = await getBiografsale(formData.biograf);
     console.log(biografSale);
-    
+    // Hvis der er færre sale end antal sale i biografen, så kan der tilføjes en ny sal
     if (biografSale.length < biograf[0].antalSale) {
             console.log("Submit clicked");
         try { 
